@@ -10,20 +10,20 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.example.teamedup.R
 import com.example.teamedup.databinding.FragmentHomeBinding
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
-import kotlin.math.log
 
 
 class HomeFragment : Fragment() {
     private lateinit var _binding : FragmentHomeBinding
     private val binding get() = _binding
     private lateinit var gameAdapter: GameAdapter
+    private lateinit var viewPagerAdapter: ContentViewPagerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +37,21 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         getData()
+        setupViewPager()
+    }
+
+    private fun setupViewPager(){
+        viewPagerAdapter = ContentViewPagerAdapter(requireActivity().supportFragmentManager, lifecycle)
+        with(binding){
+            vpContent.adapter = viewPagerAdapter
+
+            TabLayoutMediator(tlContentDivider, vpContent){ tab, position ->
+                when(position){
+                    0 -> tab.text = R.string.competition_tab.toString()
+                    1 -> tab.text = R.string.forum_tab.toString()
+                }
+            }.attach()
+        }
     }
 
     private fun setupRecyclerView(){
