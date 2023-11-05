@@ -47,8 +47,8 @@ class HomeFragment : Fragment() {
 
             TabLayoutMediator(tlContentDivider, vpContent){ tab, position ->
                 when(position){
-                    0 -> tab.text = R.string.competition_tab.toString()
-                    1 -> tab.text = R.string.forum_tab.toString()
+                    0 -> tab.text = getString(R.string.competition_tab)
+                    1 -> tab.text = getString(R.string.forum_tab)
                 }
             }.attach()
         }
