@@ -8,22 +8,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.teamedup.R
 import com.example.teamedup.databinding.FragmentHomeBinding
+import com.example.teamedup.repository.model.Game
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
+import com.example.teamedup.util.RecyclerViewGameClickListener
+import com.example.teamedup.util.TAG
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), RecyclerViewGameClickListener {
     private lateinit var _binding : FragmentHomeBinding
     private val binding get() = _binding
     private lateinit var gameAdapter: GameAdapter
     private lateinit var viewPagerAdapter: ContentViewPagerAdapter
+    private val sharedViewModel : SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,8 +67,8 @@ class HomeFragment : Fragment() {
                 requireContext(),
                 LinearLayoutManager.HORIZONTAL,
                 false)
+            gameAdapter.gameListener = this@HomeFragment
         }
-        Log.d(TAG, "setupRecyclerView: ${gameAdapter.games}")
     }
 
     private fun getData(){
@@ -80,10 +85,16 @@ class HomeFragment : Fragment() {
             }
             if(response.isSuccessful && response.body() != null){
                 gameAdapter.games = response.body()!!
+                Log.d(TAG, "setupRecyclerView: ${gameAdapter.games}")
             }else{
                 Log.d("HomeFragment", "Response no successful")
             }
             binding.pbGameList.isVisible = false
         }
+    }
+
+    override fun onItemClicked(view: View, game: Game) {
+        Log.d("HomeFragment", "onItemClicked: name: ${game.name} id: ${game.id}")
+        sharedViewModel.setGame(game.id)
     }
 }

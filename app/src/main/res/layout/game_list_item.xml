@@ -9,6 +9,7 @@
     app:cardBackgroundColor="@color/transparent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_game"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/transparent">

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.teamedup.databinding.GameListItemBinding
 import com.example.teamedup.repository.model.Game
+import com.example.teamedup.util.RecyclerViewGameClickListener
 
 class GameAdapter : RecyclerView.Adapter<GameAdapter.GameViewHolder>() {
 
@@ -29,6 +30,8 @@ class GameAdapter : RecyclerView.Adapter<GameAdapter.GameViewHolder>() {
         get() = differ.currentList
         set(value) {differ.submitList(value)}
 
+    var gameListener : RecyclerViewGameClickListener? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
         return GameViewHolder(GameListItemBinding.inflate(LayoutInflater.from(parent.context),parent, false))
     }
@@ -43,6 +46,9 @@ class GameAdapter : RecyclerView.Adapter<GameAdapter.GameViewHolder>() {
 
             tvGameTitle.text = game.name
 //            ivGameLogo.setImage
+            itemGame.setOnClickListener {
+                gameListener?.onItemClicked(it, games[position])
+            }
         }
     }
 

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.teamedup.databinding.FragmentForumDiscoverBinding
 
-class ForumDiscover : Fragment() {
+class ForumDiscoverFragment : Fragment() {
     private lateinit var _binding : FragmentForumDiscoverBinding
     private val binding get()  = _binding
 
