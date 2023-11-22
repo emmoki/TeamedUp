@@ -10,7 +10,7 @@
         <item name="cornerRadius">20dp</item>
         <item name="cornerSize">7%</item>
         <item name="cornerFamily">rounded</item>
-        <item name="background">@drawable/black_gradient_game_list</item>
+        <item name="background">@drawable/black_gradient_game_list_rounded_rectangle</item>
     </style>
     <style name="transparent" paren="Theme.AppCompat.Light.DarkActionBar">
         <item name="windowActionBar">false</item>

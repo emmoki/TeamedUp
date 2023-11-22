@@ -14,6 +14,8 @@ interface GameApi {
 //    fun createGame() : Response<CreateGames>
 
     // Tournament
-    @GET("/games/{id}/tournaments")
-    suspend fun getTournament(@Path("id") gameID : String): Response<List<Tournament>>
+    @GET("/games/{game_id}/tournaments")
+    suspend fun getTournament(@Path("game_id") gameID : String): Response<List<Tournament>>
+    @GET("/games/{game_id}/tournaments/{tournament_id}")
+    suspend fun getTournamentDetail(@Path("id") gameID : String, @Path("id") tournamentID : String): Response<List<Tournament>>
 }
