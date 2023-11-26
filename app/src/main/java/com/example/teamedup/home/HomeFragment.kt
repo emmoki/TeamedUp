@@ -1,6 +1,5 @@
 package com.example.teamedup.home
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -15,7 +14,7 @@ import com.example.teamedup.R
 import com.example.teamedup.databinding.FragmentHomeBinding
 import com.example.teamedup.repository.model.Game
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
-import com.example.teamedup.util.RecyclerViewGameClickListener
+import com.example.teamedup.util.GameRecyclerViewClickListener
 import com.example.teamedup.util.TAG
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.launch
@@ -23,7 +22,7 @@ import retrofit2.HttpException
 import java.io.IOException
 
 
-class HomeFragment : Fragment(), RecyclerViewGameClickListener {
+class HomeFragment : Fragment(), GameRecyclerViewClickListener {
     private lateinit var _binding : FragmentHomeBinding
     private val binding get() = _binding
     private lateinit var gameAdapter: GameAdapter

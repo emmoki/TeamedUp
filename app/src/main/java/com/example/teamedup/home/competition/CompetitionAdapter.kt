@@ -6,10 +6,9 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teamedup.databinding.CompetitionItemBinding
-import com.example.teamedup.databinding.GameListItemBinding
-import com.example.teamedup.home.GameAdapter
-import com.example.teamedup.repository.model.Game
 import com.example.teamedup.repository.model.Tournament
+import com.example.teamedup.util.GameRecyclerViewClickListener
+import com.example.teamedup.util.TournamentRecyclerViewClickListener
 
 class CompetitionAdapter : RecyclerView.Adapter<CompetitionAdapter.CompetitionViewHolder>() {
     inner class CompetitionViewHolder(val binding : CompetitionItemBinding) : RecyclerView.ViewHolder(binding.root)
@@ -30,6 +29,8 @@ class CompetitionAdapter : RecyclerView.Adapter<CompetitionAdapter.CompetitionVi
         get() = differ.currentList
         set(value) {differ.submitList(value)}
 
+    var tournamentListener : TournamentRecyclerViewClickListener? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CompetitionViewHolder {
         return CompetitionViewHolder(CompetitionItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
@@ -48,6 +49,9 @@ class CompetitionAdapter : RecyclerView.Adapter<CompetitionAdapter.CompetitionVi
             tvGroupJoined.text = tournament.totalParticipant.toString()
             tvGroupMax.text = tournament.maxParticipant.toString()
             tvCompetitionPrizePool.text = tournament.prize.toString()
+            competitionItem.setOnClickListener {
+                tournamentListener?.onItemClicked(it,tournament)
+            }
         }
     }
 }

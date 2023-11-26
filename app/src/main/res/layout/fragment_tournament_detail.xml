@@ -146,6 +146,7 @@
                         android:layout_marginBottom="5dp"
                         android:src="@drawable/ic_tournament_type"/>
                     <TextView
+                        android:id="@+id/tv_tournament_summary_type"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Offline"
@@ -187,6 +188,7 @@
                         android:layout_marginBottom="5dp"
                         android:src="@drawable/scene"/>
                     <TextView
+                        android:id="@+id/tv_tournament_summary_scenes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Pro"
@@ -230,6 +232,7 @@
                         android:src="@drawable/trophy" />
 
                     <TextView
+                        android:id="@+id/tv_tournament_summary_prizepool"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="-6dp"
@@ -270,6 +273,7 @@
                         android:layout_marginBottom="5dp"
                         android:src="@drawable/ic_tournament_quota"/>
                     <TextView
+                        android:id="@+id/tv_tournament_summary_quota"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="3/20"
@@ -424,6 +428,7 @@
                                 android:textSize="9dp"
                                 android:layout_marginBottom="-3dp"/>
                             <TextView
+                                android:id="@+id/tv_tournament_more_information_location"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppins_medium"
@@ -465,6 +470,7 @@
                                         android:textSize="9dp"
                                         android:layout_marginBottom="-3dp"/>
                                     <TextView
+                                        android:id="@+id/tv_tournament_more_information_scene"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/poppins_medium"
@@ -495,6 +501,7 @@
                                         android:textSize="9dp"
                                         android:layout_marginBottom="-3dp"/>
                                     <TextView
+                                        android:id="@+id/tv_tournament_more_information_quota"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/poppins_medium"
@@ -525,6 +532,7 @@
                                         android:textSize="9dp"
                                         android:layout_marginBottom="-3dp"/>
                                     <TextView
+                                        android:id="@+id/tv_tournament_more_information_entry_price"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/poppins_medium"
@@ -565,6 +573,7 @@
                                         android:textSize="9dp"
                                         android:layout_marginBottom="-3dp"/>
                                     <TextView
+                                        android:id="@+id/tv_tournament_more_information_member_requirement"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/poppins_medium"
@@ -595,6 +604,7 @@
                                         android:textSize="9dp"
                                         android:layout_marginBottom="-3dp"/>
                                     <TextView
+                                        android:id="@+id/tv_tournament_more_information_type"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/poppins_medium"
@@ -625,6 +635,7 @@
                                         android:textSize="9dp"
                                         android:layout_marginBottom="-3dp"/>
                                     <TextView
+                                        android:id="@+id/tv_tournament_more_information_prizepool"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/poppins_medium"
@@ -637,7 +648,11 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
+            <ProgressBar
+                android:id="@+id/pb_competition_detail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </ScrollView>

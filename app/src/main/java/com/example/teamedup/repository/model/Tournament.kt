@@ -11,5 +11,6 @@ data class Tournament(
     val location : String,
     val prize : Integer,
     val fee : Integer,
-    val tier : String
+    val tier : String,
+    val game : Game
 )

@@ -11,17 +11,21 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.teamedup.databinding.FragmentCompetionDiscoverBinding
+import com.example.teamedup.home.HomeFragmentDirections
 import com.example.teamedup.home.SharedViewModel
+import com.example.teamedup.repository.model.Tournament
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
 import com.example.teamedup.util.TAG
+import com.example.teamedup.util.TournamentRecyclerViewClickListener
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
 
 
-class CompetitionDiscoverFragment : Fragment() {
+class CompetitionDiscoverFragment : Fragment(), TournamentRecyclerViewClickListener{
     private lateinit var _binding : FragmentCompetionDiscoverBinding
     private val binding get() = _binding
     private lateinit var competitionAdapter : CompetitionAdapter
@@ -52,6 +56,7 @@ class CompetitionDiscoverFragment : Fragment() {
                 requireContext(),
                 LinearLayoutManager.VERTICAL,
                 false)
+            competitionAdapter.tournamentListener = this@CompetitionDiscoverFragment
         }
         Log.d(ContentValues.TAG, "setupRecyclerView: ${competitionAdapter.tournaments}")
     }
@@ -75,6 +80,11 @@ class CompetitionDiscoverFragment : Fragment() {
             }
             binding.pbCompetitionList.isVisible = false
         }
+    }
+
+    override fun onItemClicked(view: View, tournament: Tournament) {
+        val direction = HomeFragmentDirections.actionHomeFragmentToTournamentDetailFragment(sharedViewModel.game.value!!, tournament.id)
+        findNavController().navigate(direction)
     }
 
 }
