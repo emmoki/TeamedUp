@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="9dp"
+    app:cardBackgroundColor="@color/transparent">
+    <LinearLayout
+        android:id="@+id/item_game"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_rectangle_dark_purple_corner"
+        app:cardBackgroundColor="@color/transparent"
+        android:orientation="horizontal"
+        android:paddingHorizontal="10dp"
+        android:gravity="center_vertical"
+        android:paddingVertical="5dp">
+        <TextView
+            android:id="@+id/tv_member_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10dp"
+            android:text="Gwenchana"
+            android:layout_marginBottom="-2dp"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/white"
+            />
+
+        <ImageView
+            android:id="@+id/iv_delete_member"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="5dp"
+            android:src="@drawable/ic_x"
+            />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
