@@ -40,9 +40,8 @@ class CompetitionAdapter : RecyclerView.Adapter<CompetitionAdapter.CompetitionVi
     }
 
     override fun onBindViewHolder(holder: CompetitionViewHolder, position: Int) {
+        val tournament = tournaments[position]
         holder.binding.apply {
-            val tournament = tournaments[position]
-
 //            ivCompetitionLogo = tournament.icon
             tvCompetitionName.text = tournament.name
 //            tvCompetitionGame.text = tournament.game

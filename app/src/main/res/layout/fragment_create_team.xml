@@ -36,7 +36,7 @@
                 android:textSize="9dp"
                 android:layout_marginBottom="-3dp"/>
             <TextView
-                android:id="@+id/tv_tournament_more_information_scene"
+                android:id="@+id/tv_create_game_member_requirement"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"

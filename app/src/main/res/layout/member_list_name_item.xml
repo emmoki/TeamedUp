@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="9dp"
+    android:layout_marginEnd="5dp"
     app:cardBackgroundColor="@color/transparent">
     <LinearLayout
         android:id="@+id/item_game"
@@ -14,7 +14,8 @@
         android:background="@drawable/rounded_rectangle_dark_purple_corner"
         app:cardBackgroundColor="@color/transparent"
         android:orientation="horizontal"
-        android:paddingHorizontal="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="8dp"
         android:gravity="center_vertical"
         android:paddingVertical="5dp">
         <TextView

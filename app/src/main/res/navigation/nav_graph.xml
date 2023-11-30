@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/createTeamFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -24,5 +24,13 @@
         <argument
             android:name="tournamentID"
             app:argType="string" />
+        <action
+            android:id="@+id/action_tournamentDetailFragment_to_createTeamFragment"
+            app:destination="@id/createTeamFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/createTeamFragment"
+        android:name="com.example.teamedup.home.competition.createTeam.CreateTeamFragment"
+        android:label="fragment_create_team"
+        tools:layout="@layout/fragment_create_team" />
 </navigation>
