@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".paymentConfirmation.PaymentConfirmationBottomSheet"
+    android:orientation="vertical"
+    android:background="@color/gray"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Payment Confirmation"
+        android:textColor="@color/white"
+        android:fontFamily="@font/poppins_bold"
+        android:layout_marginBottom="-8dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="the process will take 1x24 hours"
+        android:textColor="@color/light_gray"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="10dp"
+        android:layout_marginBottom="15dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Proof Of Payment*"
+        android:textColor="@color/white"
+        android:fontFamily="@font/poppins_medium"/>
+
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:id="@+id/btn_proof_of_payment"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/purple_add_button"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_white_add" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/btn_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Confirm"
+        android:textColor="@color/white"
+        android:fontFamily="@font/poppins_medium"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:paddingVertical="3dp"
+        android:background="@drawable/button_purple"/>
+
+</LinearLayout>
