@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.teamedup.R
 import com.example.teamedup.databinding.FragmentCreateTeamBinding
 import com.example.teamedup.home.GameAdapter
-import com.example.teamedup.paymentConfirmation.PaymentConfirmationBottomSheet
+import com.example.teamedup.home.competition.paymentConfirmation.PaymentConfirmationBottomSheet
 import com.example.teamedup.repository.model.User
 
 class CreateTeamFragment : Fragment() {

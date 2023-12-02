@@ -1,12 +1,11 @@
-package com.example.teamedup.paymentConfirmation
+package com.example.teamedup.home.competition.paymentConfirmation
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.teamedup.R
 import com.example.teamedup.databinding.BottomSheetDialogPaymentConfirmationBottomSheetBinding
+import com.example.teamedup.home.competition.successPayDialog.SuccessPayDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class PaymentConfirmationBottomSheet : BottomSheetDialogFragment() {
@@ -24,6 +23,11 @@ class PaymentConfirmationBottomSheet : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        with(binding){
+            btnConfirm.setOnClickListener {
+                SuccessPayDialog().show(requireActivity().supportFragmentManager, "SuccessPayDialogTag")
+                dismiss()
+            }
+        }
     }
-
 }
