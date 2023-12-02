@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_homeFragment_to_tournamentDetailFragment"
             app:destination="@id/tournamentDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/tournamentDetailFragment"
@@ -72,4 +75,8 @@
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.teamedup.search.SearchFragment"
+        android:label="SearchFragment" />
 </navigation>
