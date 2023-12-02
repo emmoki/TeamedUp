@@ -32,5 +32,9 @@
         android:id="@+id/createTeamFragment"
         android:name="com.example.teamedup.home.competition.createTeam.CreateTeamFragment"
         android:label="fragment_create_team"
-        tools:layout="@layout/fragment_create_team" />
+        tools:layout="@layout/fragment_create_team" >
+        <action
+            android:id="@+id/action_createTeamFragment_to_tournamentDetailFragment"
+            app:destination="@id/tournamentDetailFragment" />
+    </fragment>
 </navigation>
