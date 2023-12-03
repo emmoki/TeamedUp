@@ -6,6 +6,11 @@
         <item name="cornerFamily">rounded</item>
         <item name="color">@color/black</item>
     </style>
+    <style name="rounded_imageView_30">
+        <item name="cornerRadius">20dp</item>
+        <item name="cornerSize">10%</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
     <style name="round_imageView">
         <item name="cornerRadius">20dp</item>
         <item name="cornerFamily">rounded</item>

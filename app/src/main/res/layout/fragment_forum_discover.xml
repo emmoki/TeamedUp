@@ -5,10 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".home.forum.ForumDiscoverFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_forum_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Forum" />
-
+        tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/forum_list_item"/>
 </FrameLayout>
