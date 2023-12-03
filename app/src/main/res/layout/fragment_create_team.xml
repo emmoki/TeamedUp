@@ -10,7 +10,7 @@
 
     <include
         android:id="@+id/toolbar_create_team"
-        layout="@layout/toolbar_layout"
+        layout="@layout/toolbar_2_item_layout"
         />
 
     <LinearLayout
