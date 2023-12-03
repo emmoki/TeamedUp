@@ -1,7 +1,6 @@
 package com.example.teamedup.home.competition
 
 import android.content.ContentValues
-import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,7 +17,6 @@ import com.example.teamedup.home.HomeFragmentDirections
 import com.example.teamedup.home.SharedViewModel
 import com.example.teamedup.repository.model.Tournament
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
-import com.example.teamedup.util.TAG
 import com.example.teamedup.util.TournamentRecyclerViewClickListener
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -45,10 +43,10 @@ class CompetitionDiscoverFragment : Fragment(), TournamentRecyclerViewClickListe
         sharedViewModel.game.observe(viewLifecycleOwner){game ->
             getData(game)
         }
-        setUpCompetitionListView()
+        setUpCompetitionRecyclerView()
     }
 
-    private fun setUpCompetitionListView(){
+    private fun setUpCompetitionRecyclerView(){
         binding.rvCompetitionList.apply {
             competitionAdapter = CompetitionAdapter()
             adapter = competitionAdapter
