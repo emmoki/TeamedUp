@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_fragmentDetailFragment"
+            app:destination="@id/fragmentDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/tournamentDetailFragment"
@@ -79,4 +82,18 @@
         android:id="@+id/searchFragment"
         android:name="com.example.teamedup.search.SearchFragment"
         android:label="SearchFragment" />
+    <fragment
+        android:id="@+id/fragmentDetailFragment"
+        android:name="com.example.teamedup.home.forum.forumDetail.FragmentDetailFragment"
+        android:label="fragment_forum_detail"
+        tools:layout="@layout/fragment_forum_detail" >
+        <action
+            android:id="@+id/action_fragmentDetailFragment_to_addCommentFragment"
+            app:destination="@id/addCommentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addCommentFragment"
+        android:name="com.example.teamedup.home.forum.comment.AddCommentFragment"
+        android:label="fragment_add_comment"
+        tools:layout="@layout/fragment_add_comment" />
 </navigation>
