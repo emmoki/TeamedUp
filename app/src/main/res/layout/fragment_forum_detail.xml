@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".home.forum.forumDetail.FragmentDetailFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/darker_gray"
+            android:orientation="vertical">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_thumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/iv_tournament_thumbnail"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:src="@drawable/dota_event"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@drawable/black_gradient_game_list_rounded_rectangle"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_tournament_thumbnail"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:layout_marginHorizontal="12dp">
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/iv_author"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:scaleType="centerCrop"
+                    app:shapeAppearanceOverlay="@style/rounded_imageView"
+                    android:src="@drawable/dota2"
+                    android:layout_marginEnd="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+                <TextView
+                    android:id="@+id/tv_author_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="10dp"
+                    android:text="MPL_Indonesia_official"
+                    android:textColor="@color/white"
+                    app:layout_constraintStart_toEndOf="@id/iv_author"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/ic_verified"
+                    app:layout_constraintBottom_toTopOf="@id/tv_author_status"
+                    app:layout_constraintStart_toEndOf="@id/tv_author_name"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/author_status"
+                    android:layout_width="5dp"
+                    android:layout_height="5dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/gray_circle"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_author_status"
+                    app:layout_constraintEnd_toStartOf="@id/tv_author_status"
+                    app:layout_constraintStart_toEndOf="@id/iv_author"
+                    app:layout_constraintTop_toBottomOf="@id/tv_author_name" />
+
+                <TextView
+                    android:id="@+id/tv_author_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="2 hours ago"
+                    android:textColor="@color/light_gray"
+                    app:layout_constraintStart_toEndOf="@id/author_status"
+                    app:layout_constraintTop_toBottomOf="@id/tv_author_name" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ONIC Esports makes history as the first team to win two MSC championship titles"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/poppins_bold"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_thumbs_up"
+                        android:layout_marginEnd="5dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:text="1.7k"
+                        android:layout_marginEnd="15dp"/>
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_thumbs_down"
+                        android:layout_marginEnd="5dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:text="1.7k"
+                        android:layout_marginEnd="5dp"/>
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="     ONIC Esports were crowned the champion of the Mobile Legends: Bang Bang Southeast Asia Cup 2023 (MSC 2023) after earning a 4-2 victory over Blacklist International in the grand final. This marks the organization’s second MSC title, following their previous win in 2019, solidifying their status as the first team to capture two MSC trophies in the tournament since its debut in 2017. They kicked off their journey with an impeccable 4-0 record in the group stage. As they progressed into the knockout stage, ONIC Esports continued their reign of dominance with a near-perfect 10-1 record.
+      The first game ended in just 11 minutes thanks to the combined effort of Calvin “CW” Winata’s Beatrix and Kairi “Kairi” Rayosdelsol’s Ling, who had a combined 11/1/14 KDA on a 14-6 kill score. In the second game, they staged a remarkable comeback, propelled by Nicky “Kiboy” Fernando’s crucial Iron Hooks on Franco to pick off Blacklist International’s backline heroes. ONIC Esports appeared on track for a 3-0 lead, but Blacklist International fought back. At the 19-minute mark, Blacklist secured the Lord and two kills, handing ONIC their first loss in the tournament.
+In the fourth game, ONIC Esports dom"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="11dp"
+                    android:textColor="@color/white" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginVertical="10dp"
+                    android:background="@color/purple_300"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Comments"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/white"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:listitem="@layout/comment_list_item"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
