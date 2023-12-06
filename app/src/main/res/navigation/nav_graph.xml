@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_homeFragment_to_createForumFragment2"
             app:destination="@id/createForumFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_createCompetitionFragment"
+            app:destination="@id/createCompetitionFragment" />
     </fragment>
     <fragment
         android:id="@+id/tournamentDetailFragment"
@@ -104,4 +107,13 @@
         android:name="com.example.teamedup.home.forum.createForum.CreateForumFragment"
         android:label="fragment_create_forum"
         tools:layout="@layout/fragment_create_forum" />
+    <fragment
+        android:id="@+id/createCompetitionFragment"
+        android:name="com.example.teamedup.home.competition.createCompetition.CreateCompetitionFragment"
+        android:label="fragment_create_competition"
+        tools:layout="@layout/fragment_create_competition" >
+        <action
+            android:id="@+id/action_createCompetitionFragment_to_tournamentDetailFragment"
+            app:destination="@id/tournamentDetailFragment" />
+    </fragment>
 </navigation>
