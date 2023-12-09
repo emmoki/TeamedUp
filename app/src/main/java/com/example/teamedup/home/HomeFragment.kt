@@ -83,7 +83,7 @@ class HomeFragment : Fragment(), GameRecyclerViewClickListener {
                 return@launch
             }
             if(response.isSuccessful && response.body() != null){
-                gameAdapter.games = response.body()!!
+                gameAdapter.games = response.body()!!.data
                 Log.d(TAG, "setupRecyclerView: ${gameAdapter.games}")
             }else{
                 Log.d("HomeFragment", "Response no successful")

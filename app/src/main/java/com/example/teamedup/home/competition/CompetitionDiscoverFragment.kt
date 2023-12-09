@@ -72,7 +72,7 @@ class CompetitionDiscoverFragment : Fragment(), TournamentRecyclerViewClickListe
                 return@launch
             }
             if(response.isSuccessful && response.body() != null){
-                competitionAdapter.tournaments = response.body()!!
+                competitionAdapter.tournaments = response.body()!!.data
             }else{
                 Log.d("CompetitionDiscover", "Response no successful")
             }

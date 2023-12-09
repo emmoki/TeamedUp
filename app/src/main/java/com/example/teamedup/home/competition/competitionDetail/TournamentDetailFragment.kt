@@ -57,7 +57,7 @@ class TournamentDetailFragment : Fragment() {
                 return@launch
             }
             if(response.isSuccessful && response.body() != null){
-                viewmodel.tournament = response.body()!!
+                viewmodel.tournament = response.body()!!.data
                 Log.d(TAG, "getData: ${viewmodel.tournament}")
                 with(binding){
                     tvTournamentName.text = viewmodel.tournament.name
