@@ -24,7 +24,6 @@ class SuccessPayDialog : DialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = DialogFragmentSuccessPayBinding.inflate(inflater)
         setStyle()
         return binding.root
@@ -32,11 +31,11 @@ class SuccessPayDialog : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        this.isCancelable = false
         lifecycleScope.launch {
             delay(2000)
             dismiss()
-            val direction = CreateTeamFragmentDirections.actionCreateTeamFragmentToTournamentDetailFragment("", "")
-            findNavController().navigate(direction)
+            findNavController().popBackStack()
         }
     }
 
