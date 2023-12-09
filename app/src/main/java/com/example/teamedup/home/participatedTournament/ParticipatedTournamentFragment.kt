@@ -1,4 +1,4 @@
-package com.example.teamedup.home.clamaible
+package com.example.teamedup.home.participatedTournament
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
