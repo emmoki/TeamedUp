@@ -32,6 +32,9 @@ class LoginFragment : Fragment() {
             tvSignUp.setOnClickListener {
                 findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
             }
+            btnLogin.setOnClickListener {
+                findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+            }
         }
     }
 }

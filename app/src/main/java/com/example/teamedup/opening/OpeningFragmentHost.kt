@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import com.example.teamedup.R
 import com.example.teamedup.databinding.FragmentOpeningBinding
 
 class OpeningFragmentHost : Fragment() {
@@ -42,7 +44,12 @@ class OpeningFragmentHost : Fragment() {
 
     private fun otherViewSetup(){
         with(binding){
-
+            btnLogIn.setOnClickListener {
+                findNavController().navigate(R.id.action_openingFragmentHost_to_loginFragment)
+            }
+            btnCreateAnAccount.setOnClickListener {
+                findNavController().navigate(R.id.action_openingFragmentHost_to_registerFragment)
+            }
         }
     }
 }
