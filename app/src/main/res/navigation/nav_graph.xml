@@ -27,6 +27,12 @@
         <action
             android:id="@+id/action_homeFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment2"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_claimablePrizeFragment"
+            app:destination="@id/claimablePrizeFragment" />
     </fragment>
     <fragment
         android:id="@+id/tournamentDetailFragment"
@@ -123,5 +129,14 @@
         android:id="@+id/profileFragment"
         android:name="com.example.teamedup.home.profile.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_claimablePrizeFragment"
+            app:destination="@id/claimablePrizeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/claimablePrizeFragment"
+        android:name="com.example.teamedup.home.clamaible.ParticipatedTournamentFragment"
+        android:label="fragment_claimable_prize"
+        tools:layout="@layout/fragment_participated_tournament" />
 </navigation>
