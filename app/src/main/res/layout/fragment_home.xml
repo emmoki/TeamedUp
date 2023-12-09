@@ -52,7 +52,7 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/strongbox" />
+                android:src="@drawable/ic_strongbox" />
         </LinearLayout>
 
         <LinearLayout
