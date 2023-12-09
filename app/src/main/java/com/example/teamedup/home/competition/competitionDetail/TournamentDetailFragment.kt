@@ -9,12 +9,14 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.teamedup.R
 import com.example.teamedup.databinding.FragmentTournamentDetailBinding
 import com.example.teamedup.repository.model.Tournament
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
 import com.example.teamedup.util.TAG
+import com.example.teamedup.util.moneySuffix
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
@@ -59,29 +61,37 @@ class TournamentDetailFragment : Fragment() {
             if(response.isSuccessful && response.body() != null){
                 viewmodel.tournament = response.body()!!.data
                 Log.d(TAG, "getData: ${viewmodel.tournament}")
-                with(binding){
-                    tvTournamentName.text = viewmodel.tournament.name
-                    tvTournamentSummaryType.text = viewmodel.tournament.type
-                    tvTournamentSummaryScenes.text = viewmodel.tournament.tier
-                    tvTournamentSummaryPrizepool.text = viewmodel.tournament.prize.toString()
-                    tvTournamentSummaryQuota.text = viewmodel.tournament.totalParticipant.toString()
-
-                    tvTournamentGameName.text= viewmodel.tournament.game.name
-//            tvTournamentGameYear.text = viewmodel.tournament.game.year
-//            tvTournamentGameDesc.translationX = viewmodel.tournament.game.desc
-
-                    tvTournamentMoreInformationLocation.text = viewmodel.tournament.location
-                    tvTournamentMoreInformationScene.text = viewmodel.tournament.tier
-                    tvTournamentMoreInformationQuota.text = viewmodel.tournament.totalParticipant.toString()
-                    tvTournamentMoreInformationEntryPrice.text = viewmodel.tournament.fee.toString()
-                    tvTournamentMoreInformationMemberRequirement.text = viewmodel.tournament.maxPlayerInTeam.toString()
-                    tvTournamentMoreInformationType.text = viewmodel.tournament.type
-                    tvTournamentMoreInformationPrizepool.text = viewmodel.tournament.prize.toString()
-                }
+                setUpView()
             }else{
                 Log.d(TAG, "Response no successful")
             }
             binding.pbCompetitionDetail.isVisible = false
+        }
+    }
+
+    private fun setUpView(){
+        with(binding){
+            tvTournamentName.text = viewmodel.tournament.name
+            tvTournamentSummaryType.text = viewmodel.tournament.type
+            tvTournamentSummaryScenes.text = viewmodel.tournament.tier
+            tvTournamentSummaryPrizepool.text = moneySuffix(viewmodel.tournament.prize.toInt())
+            tvTournamentSummaryQuota.text = viewmodel.tournament.totalParticipant.toString()
+
+            tvTournamentGameName.text= viewmodel.tournament.game.name
+//            tvTournamentGameYear.text = viewmodel.tournament.game.year
+//            tvTournamentGameDesc.translationX = viewmodel.tournament.game.desc
+
+            tvTournamentMoreInformationLocation.text = viewmodel.tournament.location
+            tvTournamentMoreInformationScene.text = viewmodel.tournament.tier
+            tvTournamentMoreInformationQuota.text = viewmodel.tournament.totalParticipant.toString()
+            tvTournamentMoreInformationEntryPrice.text = moneySuffix(viewmodel.tournament.fee.toInt())
+            tvTournamentMoreInformationMemberRequirement.text = viewmodel.tournament.maxPlayerInTeam.toString()
+            tvTournamentMoreInformationType.text = viewmodel.tournament.type
+            tvTournamentMoreInformationPrizepool.text = moneySuffix(viewmodel.tournament.prize.toInt())
+
+            btnTournamentJoin.setOnClickListener {
+                findNavController().navigate(R.id.action_tournamentDetailFragment_to_createTeamFragment)
+            }
         }
     }
 }
