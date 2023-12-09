@@ -5,18 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.teamedup.databinding.FragmentClaimablePrizeBinding
+import com.example.teamedup.databinding.FragmentParticipatedTournamentBinding
 
 
 class ParticipatedTournamentFragment : Fragment() {
-    private lateinit var _binding : FragmentClaimablePrizeBinding
+    private lateinit var _binding : FragmentParticipatedTournamentBinding
     private val binding get() = _binding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentClaimablePrizeBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentParticipatedTournamentBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
