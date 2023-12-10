@@ -41,6 +41,7 @@
             android:textColor="@color/white"/>
 
         <EditText
+            android:id="@+id/et_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"/>
@@ -54,6 +55,7 @@
             android:textColor="@color/white"/>
 
         <EditText
+            android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"/>

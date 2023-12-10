@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.teamedup.R
 import com.example.teamedup.databinding.FragmentHomeBinding
@@ -39,6 +40,7 @@ class HomeFragment : Fragment(), GameRecyclerViewClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpAddButton()
         setupRecyclerView()
         getData()
         setupViewPager()
@@ -95,5 +97,16 @@ class HomeFragment : Fragment(), GameRecyclerViewClickListener {
     override fun onItemClicked(view: View, game: Game) {
         Log.d("HomeFragment", "onItemClicked: name: ${game.name} id: ${game.id}")
         sharedViewModel.setGame(game.id)
+    }
+
+    private fun setUpAddButton(){
+        binding.btnAdding.setOnClickListener {
+            sharedViewModel.tab.observe(viewLifecycleOwner){tab ->
+                when(tab){
+                    "Forum" -> findNavController().navigate(R.id.action_homeFragment_to_createForumFragment)
+                    "Tournament" -> findNavController().navigate(R.id.action_homeFragment_to_createCompetitionFragment)
+                }
+            }
+        }
     }
 }

@@ -40,10 +40,17 @@ class ForumDiscoverFragment : Fragment(), ForumRecyclerViewClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.d(TAG, "onViewCreated: Called")
         sharedViewModel.game.observe(viewLifecycleOwner){game ->
             getData(game)
+            setUpForumRecyclerView()
         }
-        setUpForumRecyclerView()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        sharedViewModel.setTab("Forum")
+
     }
 
     private fun getData(game : String){
@@ -79,7 +86,7 @@ class ForumDiscoverFragment : Fragment(), ForumRecyclerViewClickListener {
 
     override fun onItemClicked(view: View, forum: Forum) {
         Log.d(TAG, "onItemClicked: ${forum.id}")
-        val direction = HomeFragmentDirections.actionHomeFragmentToFragmentDetailFragment(sharedViewModel.game.value!!, forum.id)
+        val direction = HomeFragmentDirections.actionHomeFragmentToFragmentDetailFragment(sharedViewModel.game.value!!, forum.id!!)
         findNavController().navigate(direction)
     }
 }

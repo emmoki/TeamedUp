@@ -19,7 +19,7 @@
             android:id="@+id/action_homeFragment_to_fragmentDetailFragment"
             app:destination="@id/forumDetailFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_createForumFragment2"
+            android:id="@+id/action_homeFragment_to_createForumFragment"
             app:destination="@id/createForumFragment" />
         <action
             android:id="@+id/action_homeFragment_to_createCompetitionFragment"

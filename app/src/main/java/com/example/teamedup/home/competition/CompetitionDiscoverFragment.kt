@@ -46,6 +46,11 @@ class CompetitionDiscoverFragment : Fragment(), TournamentRecyclerViewClickListe
         setUpCompetitionRecyclerView()
     }
 
+    override fun onResume() {
+        super.onResume()
+        sharedViewModel.setTab("Tournament")
+    }
+
     private fun setUpCompetitionRecyclerView(){
         binding.rvCompetitionList.apply {
             competitionAdapter = CompetitionAdapter()
