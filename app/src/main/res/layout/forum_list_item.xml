@@ -40,7 +40,7 @@
             android:text="MPL_Indonesia_official"
             android:textColor="@color/white"
             android:fontFamily="@font/poppins_regular"
-            android:textSize="11dp"
+            android:textSize="10dp"
             android:layout_marginBottom="-2dp"
             android:layout_marginEnd="10dp"
             />
@@ -84,6 +84,7 @@
         android:layout_height="wrap_content"
         android:text="ONIC Esports makes history as the first team to win two MSC championship titles"
         android:textColor="@color/white"
+        android:textSize="12sp"
         android:fontFamily="@font/poppins_bold"
         android:layout_marginTop="5dp" />
     <TextView
@@ -92,7 +93,7 @@
         android:layout_height="wrap_content"
         android:text="The newest Marksman hero, Ixia, has arrived! Explore the hero bundle that is also available, containing the hero and her first skin! Buy the bundle with only 469 Diamonds in launch week. You can also buy the skin at a price of ONLY 51 Diamonds for the first fortnight!"
         android:fontFamily="@font/poppins_regular"
-        android:textSize="11dp"
+        android:textSize="10dp"
         android:textColor="@color/white" />
     <LinearLayout
         android:layout_width="match_parent"
