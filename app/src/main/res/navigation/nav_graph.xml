@@ -17,7 +17,7 @@
             app:destination="@id/searchFragment" />
         <action
             android:id="@+id/action_homeFragment_to_fragmentDetailFragment"
-            app:destination="@id/fragmentDetailFragment" />
+            app:destination="@id/forumDetailFragment" />
         <action
             android:id="@+id/action_homeFragment_to_createForumFragment2"
             app:destination="@id/createForumFragment" />
@@ -98,13 +98,19 @@
         android:name="com.example.teamedup.search.SearchFragment"
         android:label="SearchFragment" />
     <fragment
-        android:id="@+id/fragmentDetailFragment"
-        android:name="com.example.teamedup.home.forum.forumDetail.FragmentDetailFragment"
+        android:id="@+id/forumDetailFragment"
+        android:name="com.example.teamedup.home.forum.forumDetail.ForumDetailFragment"
         android:label="fragment_forum_detail"
         tools:layout="@layout/fragment_forum_detail" >
         <action
             android:id="@+id/action_fragmentDetailFragment_to_addCommentFragment"
             app:destination="@id/addCommentFragment" />
+        <argument
+            android:name="gameID"
+            app:argType="string" />
+        <argument
+            android:name="forumID"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/addCommentFragment"

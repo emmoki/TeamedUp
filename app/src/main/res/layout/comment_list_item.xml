@@ -19,7 +19,7 @@
             android:background="@color/transparent"
             android:layout_marginEnd="10dp">
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/iv_game_logo"
+                android:id="@+id/iv_author_icon"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/pp_member"
@@ -33,6 +33,7 @@
                 app:layout_constraintEnd_toEndOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
         <TextView
+            android:id="@+id/tv_author_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="MPL_Indonesia_official"
@@ -43,16 +44,19 @@
             android:layout_marginEnd="10dp"
             />
         <ImageView
+            android:visibility="gone"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:src="@drawable/ic_verified"
             android:layout_marginEnd="10dp"/>
         <View
+            android:visibility="gone"
             android:layout_width="5dp"
             android:layout_height="5dp"
             android:background="@drawable/gray_circle"
             android:layout_marginEnd="10dp"/>
         <TextView
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2 hours ago"
@@ -62,6 +66,7 @@
             android:textColor="@color/light_gray"/>
     </LinearLayout>
     <TextView
+        android:id="@+id/tv_comment_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="The newest Marksman hero, Ixia, has arrived! Explore the hero bundle that is also available, containing the hero and her first skin! Buy the bundle with only 469 Diamonds in launch week. You can also buy the skin at a price of ONLY 51 Diamonds for the first fortnight!"
@@ -79,6 +84,7 @@
             android:src="@drawable/ic_thumbs_up"
             android:layout_marginEnd="5dp"/>
         <TextView
+            android:id="@+id/tv_upvote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
@@ -90,6 +96,7 @@
             android:src="@drawable/ic_thumbs_down"
             android:layout_marginEnd="5dp"/>
         <TextView
+            android:id="@+id/tv_down_vote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"

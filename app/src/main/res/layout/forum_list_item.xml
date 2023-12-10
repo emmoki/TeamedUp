@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/forum_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -19,7 +20,7 @@
             android:background="@color/transparent"
             android:layout_marginEnd="10dp">
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/iv_game_logo"
+                android:id="@+id/iv_user_logo"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/pp_member"
@@ -33,6 +34,7 @@
                 app:layout_constraintEnd_toEndOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
         <TextView
+            android:id="@+id/tv_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="MPL_Indonesia_official"
@@ -43,6 +45,8 @@
             android:layout_marginEnd="10dp"
             />
         <ImageView
+            android:id="@+id/iv_is_verified"
+            android:visibility="gone"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:src="@drawable/ic_verified"
@@ -50,12 +54,15 @@
         <View
             android:layout_width="5dp"
             android:layout_height="5dp"
+            android:visibility="gone"
             android:background="@drawable/gray_circle"
             android:layout_marginEnd="10dp"/>
         <TextView
+            android:id="@+id/tv_user_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2 hours ago"
+            android:visibility="gone"
             android:fontFamily="@font/poppins_regular"
             android:textSize="11sp"
             android:layout_marginBottom="-2dp"
@@ -65,12 +72,14 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:maxHeight="55dp"
+        android:visibility="gone"
         android:src="@drawable/dota_event"
         android:scaleType="centerCrop"
         android:layout_marginTop="10dp"
         app:shapeAppearanceOverlay="@style/rounded_imageView_30"
         app:strokeWidth="3dp"/>
     <TextView
+        android:id="@+id/tv_forum_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="ONIC Esports makes history as the first team to win two MSC championship titles"
@@ -78,6 +87,7 @@
         android:fontFamily="@font/poppins_bold"
         android:layout_marginTop="10dp" />
     <TextView
+        android:id="@+id/tv_forum_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="The newest Marksman hero, Ixia, has arrived! Explore the hero bundle that is also available, containing the hero and her first skin! Buy the bundle with only 469 Diamonds in launch week. You can also buy the skin at a price of ONLY 51 Diamonds for the first fortnight!"
@@ -95,6 +105,7 @@
             android:src="@drawable/ic_thumbs_up"
             android:layout_marginEnd="5dp"/>
         <TextView
+            android:id="@+id/tv_upvote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
@@ -106,6 +117,7 @@
             android:src="@drawable/ic_thumbs_down"
             android:layout_marginEnd="5dp"/>
         <TextView
+            android:id="@+id/tv_down_vote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"

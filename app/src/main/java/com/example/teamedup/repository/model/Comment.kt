@@ -4,5 +4,6 @@ data class Comment(
     val id: String,
     val comment: String,
     val upVote: Int,
-    val downVote: Int
+    val downVote: Int,
+//    val user : User
 )

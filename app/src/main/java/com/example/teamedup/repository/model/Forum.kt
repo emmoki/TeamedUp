@@ -6,6 +6,6 @@ data class Forum(
     val content: String,
     val upVote: Int,
     val downVote: Int,
-    val user: String,
+    val user: User?,
     val comments: List<Comment>
 )

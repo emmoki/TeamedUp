@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".home.forum.forumDetail.FragmentDetailFragment">
+    android:background="@color/darker_gray"
+    tools:context=".home.forum.forumDetail.ForumDetailFragment">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -14,10 +15,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/darker_gray"
                 android:orientation="vertical">
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_thumbnail"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <com.google.android.material.imageview.ShapeableImageView
@@ -38,7 +39,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="5dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginHorizontal="12dp">
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/iv_author"
@@ -61,6 +62,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
+                        android:visibility="gone"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_marginStart="10dp"
@@ -70,6 +72,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <View
+                        android:visibility="gone"
                         android:id="@+id/author_status"
                         android:layout_width="5dp"
                         android:layout_height="5dp"
@@ -81,6 +84,7 @@
                         app:layout_constraintTop_toBottomOf="@id/tv_author_name" />
 
                     <TextView
+                        android:visibility="gone"
                         android:id="@+id/tv_author_status"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -96,6 +100,7 @@
                     android:layout_margin="12dp"
                     android:orientation="vertical">
                     <TextView
+                        android:id="@+id/tv_forum_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="ONIC Esports makes history as the first team to win two MSC championship titles"
@@ -111,6 +116,7 @@
                             android:src="@drawable/ic_thumbs_up"
                             android:layout_marginEnd="5dp"/>
                         <TextView
+                            android:id="@+id/tv_forum_up_vote"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
@@ -122,6 +128,7 @@
                             android:src="@drawable/ic_thumbs_down"
                             android:layout_marginEnd="5dp"/>
                         <TextView
+                            android:id="@+id/tv_forum_down_vote"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
@@ -129,6 +136,7 @@
                             android:layout_marginEnd="5dp"/>
                     </LinearLayout>
                     <TextView
+                        android:id="@+id/tv_forum_content"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="     ONIC Esports were crowned the champion of the Mobile Legends: Bang Bang Southeast Asia Cup 2023 (MSC 2023) after earning a 4-2 victory over Blacklist International in the grand final. This marks the organization’s second MSC title, following their previous win in 2019, solidifying their status as the first team to capture two MSC trophies in the tournament since its debut in 2017. They kicked off their journey with an impeccable 4-0 record in the group stage. As they progressed into the knockout stage, ONIC Esports continued their reign of dominance with a near-perfect 10-1 record.
@@ -151,6 +159,7 @@ In the fourth game, ONIC Esports dom"
                         android:textColor="@color/white"
                         android:layout_marginBottom="10dp"/>
                     <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_comment_list"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         tools:listitem="@layout/comment_list_item"
