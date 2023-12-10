@@ -125,7 +125,8 @@
             app:tabTextColor="@color/white"
             app:tabIndicatorColor="@color/white"
             android:background="@color/transparent"
-            app:tabMode="scrollable"/>
+            android:theme="@style/tab_text"
+            app:tabMode="scrollable" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
