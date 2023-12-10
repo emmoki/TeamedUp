@@ -65,6 +65,7 @@ class CreateForumFragment : Fragment() {
                 return@launch
             }
             if(response.isSuccessful && response.body() != null){
+                SuccessCreateDialog().show(parentFragmentManager, "SuccessCreateDialog")
                 findNavController().popBackStack()
 //                Log.d(TAG, "getData: ${viewmodel.user}")
             }else{

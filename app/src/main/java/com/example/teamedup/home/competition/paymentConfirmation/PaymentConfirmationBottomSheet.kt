@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.teamedup.databinding.BottomSheetDialogPaymentConfirmationBottomSheetBinding
 import com.example.teamedup.home.competition.successPayDialog.SuccessPayDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -27,6 +28,7 @@ class PaymentConfirmationBottomSheet : BottomSheetDialogFragment() {
             btnConfirm.setOnClickListener {
                 SuccessPayDialog().show(requireActivity().supportFragmentManager, "SuccessPayDialogTag")
                 dismiss()
+                findNavController().popBackStack()
             }
         }
     }

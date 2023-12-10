@@ -1,4 +1,4 @@
-package com.example.teamedup.home.competition.successPayDialog
+package com.example.teamedup.home.forum.createForum
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -11,12 +11,10 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.teamedup.databinding.DialogFragmentSuccessPayBinding
-import com.example.teamedup.home.competition.createTeam.CreateTeamFragmentDirections
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-
-class SuccessPayDialog : DialogFragment() {
+class SuccessCreateDialog : DialogFragment() {
     private lateinit var _binding : DialogFragmentSuccessPayBinding
     private val binding get() = _binding
 
@@ -36,6 +34,13 @@ class SuccessPayDialog : DialogFragment() {
             delay(2000)
             dismiss()
         }
+        setupView()
+    }
+
+    private fun setupView(){
+        binding.tvHeadMessage.text = "Forum Created"
+        binding.llFirstMessage.visibility = View.GONE
+        binding.tvSecondMessage.visibility = View.GONE
     }
 
     private fun setStyle(){
