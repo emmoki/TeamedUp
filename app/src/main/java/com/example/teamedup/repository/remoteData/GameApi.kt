@@ -1,5 +1,6 @@
 package com.example.teamedup.repository.remoteData
 
+import com.example.teamedup.repository.model.Comment
 import com.example.teamedup.repository.model.Forum
 import com.example.teamedup.repository.model.Tournament
 import com.example.teamedup.repository.model.User
@@ -35,8 +36,11 @@ interface GameApi {
     @GET("/games/{game_id}/forums/{forum_id}")
     suspend fun getForumDetail(@Path("game_id") gameID : String, @Path("forum_id") forumID : String): Response<FormatResponseForum>
 
+
     // Forum Comment
     @GET("/games/{game_id}/forums/{forum_id}/comments")
     suspend fun getForumComment(@Path("game_id") gameID : String, @Path("forum_id") forumID : String): Response<FormatResponseCommentList>
+    @POST("/games/{game_id}/forums/{forum_id}/comments")
+    suspend fun createComment(@Path("game_id") gameID : String, @Path("forum_id") forumID : String, @Body comment: Comment): Response<Comment>
 
 }

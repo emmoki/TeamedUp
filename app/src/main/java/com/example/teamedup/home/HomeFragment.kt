@@ -40,6 +40,7 @@ class HomeFragment : Fragment(), GameRecyclerViewClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        restartManager()
         setUpAddButton()
         setupRecyclerView()
         getData()
@@ -70,6 +71,11 @@ class HomeFragment : Fragment(), GameRecyclerViewClickListener {
                 false)
             gameAdapter.gameListener = this@HomeFragment
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        sharedViewModel.setRestart(false)
     }
 
     private fun getData(){
@@ -106,6 +112,19 @@ class HomeFragment : Fragment(), GameRecyclerViewClickListener {
                     "Forum" -> findNavController().navigate(R.id.action_homeFragment_to_createForumFragment)
                     "Tournament" -> findNavController().navigate(R.id.action_homeFragment_to_createCompetitionFragment)
                 }
+            }
+        }
+    }
+
+    private fun restartManager(){
+        sharedViewModel.restartHandler.observe(viewLifecycleOwner){
+            when(it){
+                true -> {
+                    Log.d(TAG, "restartManager: RESTAART")
+                    getData()
+                    setupRecyclerView()
+                }
+                false -> {}
             }
         }
     }

@@ -67,6 +67,7 @@ class CreateForumFragment : Fragment() {
             if(response.isSuccessful && response.body() != null){
                 SuccessCreateDialog().show(parentFragmentManager, "SuccessCreateDialog")
                 findNavController().popBackStack()
+                sharedViewModel.setRestart(true)
 //                Log.d(TAG, "getData: ${viewmodel.user}")
             }else{
                 Log.d(TAG, "Response no successful")

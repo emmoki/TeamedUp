@@ -116,7 +116,14 @@
         android:id="@+id/addCommentFragment"
         android:name="com.example.teamedup.home.forum.comment.AddCommentFragment"
         android:label="fragment_add_comment"
-        tools:layout="@layout/fragment_add_comment" />
+        tools:layout="@layout/fragment_add_comment" >
+        <argument
+            android:name="gameID"
+            app:argType="string" />
+        <argument
+            android:name="forumID"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/createForumFragment"
         android:name="com.example.teamedup.home.forum.createForum.CreateForumFragment"

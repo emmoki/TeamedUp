@@ -8,8 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.teamedup.R
 import com.example.teamedup.databinding.FragmentForumDetailBinding
 import com.example.teamedup.home.forum.comment.CommentItemAdapter
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
@@ -38,6 +41,7 @@ class ForumDetailFragment : Fragment() {
         getForumData(forumDetailFragmentArgs.gameID, forumDetailFragmentArgs.forumID)
         getCommentData(forumDetailFragmentArgs.gameID, forumDetailFragmentArgs.forumID)
         setUpCommentRecyclerView()
+        createCommentBtn()
     }
 
     private fun getForumData(gameID : String, forumID : String){
@@ -105,6 +109,19 @@ class ForumDetailFragment : Fragment() {
             tvForumUpVote.text = viewmodel.forum.upVote.toString()
             tvForumDownVote.text = viewmodel.forum.downVote.toString()
             tvForumContent.text = viewmodel.forum.content
+        }
+    }
+
+    private fun createCommentBtn(){
+        binding.apply {
+            clAdd.setOnClickListener {
+                val direction = ForumDetailFragmentDirections
+                    .actionFragmentDetailFragmentToAddCommentFragment(
+                        forumDetailFragmentArgs.gameID,
+                        forumDetailFragmentArgs.forumID
+                    )
+                findNavController().navigate(direction)
+            }
         }
     }
 }
