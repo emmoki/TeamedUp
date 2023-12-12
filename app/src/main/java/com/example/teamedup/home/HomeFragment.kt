@@ -119,11 +119,7 @@ class HomeFragment : Fragment(), GameRecyclerViewClickListener {
     private fun restartManager(){
         sharedViewModel.restartHandler.observe(viewLifecycleOwner){
             when(it){
-                true -> {
-                    Log.d(TAG, "restartManager: RESTAART")
-                    getData()
-                    setupRecyclerView()
-                }
+                true -> { sharedViewModel.setGame(sharedViewModel.game.value!!) }
                 false -> {}
             }
         }
