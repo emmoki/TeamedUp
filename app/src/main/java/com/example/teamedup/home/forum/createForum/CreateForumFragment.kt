@@ -1,19 +1,26 @@
 package com.example.teamedup.home.forum.createForum
 
+import android.app.Activity
+import android.app.Activity.RESULT_OK
+import android.content.ContentResolver
+import android.content.Intent
+import android.graphics.ImageDecoder
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.teamedup.R
 import com.example.teamedup.databinding.FragmentCreateForumBinding
 import com.example.teamedup.home.SharedViewModel
 import com.example.teamedup.repository.model.Forum
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
+import com.example.teamedup.util.GlobalConstant
+import com.example.teamedup.util.PictureRelatedTools
 import com.example.teamedup.util.TAG
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -24,6 +31,7 @@ class CreateForumFragment : Fragment() {
     private lateinit var _binding : FragmentCreateForumBinding
     private val binding get() = _binding
     private val sharedViewModel : SharedViewModel by activityViewModels()
+    private val viewModel : CreateForumViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +48,15 @@ class CreateForumFragment : Fragment() {
 
     private fun setUpOtherView(){
         binding.apply {
+            viewModel.picture.observe(viewLifecycleOwner){picture ->
+                if(picture != null){
+                    Log.d(TAG, "setUpOtherView: ${PictureRelatedTools.convertBitmapToBase64(picture)}")
+                    ivForumThumbnail.setImageBitmap(picture)
+                    ivForumThumbnail.visibility = View.VISIBLE
+                    btnEditForumThumbnail.visibility = View.VISIBLE
+                    btnAddForumThumbnail.visibility = View.GONE
+                }
+            }
             toolbar.tvToolbarTitle.text = "Create Forum"
             toolbar.btnCreate.text = "Post"
             toolbar.back.setOnClickListener {
@@ -50,7 +67,19 @@ class CreateForumFragment : Fragment() {
                     postData(game, Forum(null,etForumTitle.text.toString(),etForumContent.text.toString(),0,0,null,null))
                 }
             }
+            btnAddForumThumbnail.setOnClickListener {
+                pickImageFromGallery()
+            }
+            btnEditForumThumbnail.setOnClickListener {
+                pickImageFromGallery()
+            }
         }
+    }
+
+    private fun pickImageFromGallery(){
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        this.startActivityForResult(intent, GlobalConstant.IMAGE_REQUEST_CODE)
     }
 
     private fun postData(gameID : String,forum: Forum){
@@ -72,6 +101,17 @@ class CreateForumFragment : Fragment() {
             }else{
                 Log.d(TAG, "Response no successful")
             }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == GlobalConstant.IMAGE_REQUEST_CODE && resultCode == RESULT_OK){
+            Log.d(TAG, "onActivityResult: ${viewModel.picture.value}")
+            val imageUri = data?.data
+            val imageSource = ImageDecoder.createSource(requireActivity().contentResolver, imageUri!!)
+            val imageBitmap = ImageDecoder.decodeBitmap(imageSource)
+            viewModel.setPicture(imageBitmap)
         }
     }
 }
