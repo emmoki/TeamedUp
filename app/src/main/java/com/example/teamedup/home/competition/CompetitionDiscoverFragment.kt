@@ -17,6 +17,7 @@ import com.example.teamedup.home.HomeFragmentDirections
 import com.example.teamedup.home.SharedViewModel
 import com.example.teamedup.repository.model.Tournament
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
+import com.example.teamedup.util.GlobalConstant
 import com.example.teamedup.util.TournamentRecyclerViewClickListener
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -68,7 +69,7 @@ class CompetitionDiscoverFragment : Fragment(), TournamentRecyclerViewClickListe
         lifecycleScope.launch {
             binding.pbCompetitionList.isVisible = true
             val response = try {
-                RetrofitInstances.api.getTournament(game)
+                RetrofitInstances.api.getTournament(GlobalConstant.ATHENTICATION_TOKEN, game)
             } catch (e : IOException){
                 Log.d("CompetitionDiscover", "$e")
                 return@launch

@@ -16,6 +16,7 @@ import com.example.teamedup.databinding.FragmentHomeBinding
 import com.example.teamedup.repository.model.Game
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
 import com.example.teamedup.util.GameRecyclerViewClickListener
+import com.example.teamedup.util.GlobalConstant
 import com.example.teamedup.util.TAG
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.launch
@@ -30,6 +31,9 @@ class HomeFragment : Fragment(), GameRecyclerViewClickListener {
     private lateinit var viewPagerAdapter: ContentViewPagerAdapter
     private val sharedViewModel : SharedViewModel by activityViewModels()
 
+    init {
+        Log.d(TAG, "INITHOMEFRAGMENT: ${GlobalConstant.ATHENTICATION_TOKEN}")
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -82,7 +86,7 @@ class HomeFragment : Fragment(), GameRecyclerViewClickListener {
         lifecycleScope.launch {
             binding.pbGameList.isVisible = true
             val response = try {
-                RetrofitInstances.api.getGame()
+                RetrofitInstances.api.getGame(GlobalConstant.ATHENTICATION_TOKEN)
             } catch (e : IOException){
                 Log.d("HomeFragment", "$e")
                 return@launch

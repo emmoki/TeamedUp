@@ -18,6 +18,7 @@ import com.example.teamedup.repository.model.Forum
 import com.example.teamedup.repository.model.Game
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
 import com.example.teamedup.util.ForumRecyclerViewClickListener
+import com.example.teamedup.util.GlobalConstant
 import com.example.teamedup.util.TAG
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -56,7 +57,7 @@ class ForumDiscoverFragment : Fragment(), ForumRecyclerViewClickListener {
     private fun getData(game : String){
         lifecycleScope.launch {
             val response = try {
-                RetrofitInstances.api.getForums(game)
+                RetrofitInstances.api.getForums(GlobalConstant.ATHENTICATION_TOKEN,game)
             } catch (e : IOException){
                 Log.d("CompetitionDiscover", "$e")
                 return@launch

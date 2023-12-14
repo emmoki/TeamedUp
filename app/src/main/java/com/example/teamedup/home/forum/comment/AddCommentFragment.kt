@@ -17,6 +17,7 @@ import com.example.teamedup.home.forum.createForum.SuccessCreateDialog
 import com.example.teamedup.repository.model.Comment
 import com.example.teamedup.repository.model.Forum
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
+import com.example.teamedup.util.GlobalConstant
 import com.example.teamedup.util.TAG
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -27,6 +28,7 @@ class AddCommentFragment : Fragment() {
     private val binding get() = _binding
     private val sharedViewModel : SharedViewModel by activityViewModels()
     private val addCommentFragmentArgs : AddCommentFragmentArgs by navArgs()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,7 +53,7 @@ class AddCommentFragment : Fragment() {
     private fun postData(gameID : String, forumID: String, comment: Comment){
         lifecycleScope.launch {
             val response = try {
-                RetrofitInstances.api.createComment(gameID, forumID, comment)
+                RetrofitInstances.api.createComment(GlobalConstant.ATHENTICATION_TOKEN,gameID, forumID, comment)
             } catch (e : IOException){
                 Log.d(TAG, "$e")
                 return@launch

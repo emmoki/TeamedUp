@@ -85,7 +85,7 @@ class CreateForumFragment : Fragment() {
     private fun postData(gameID : String,forum: Forum){
         lifecycleScope.launch {
             val response = try {
-                RetrofitInstances.api.createForums(gameID, forum)
+                RetrofitInstances.api.createForums(GlobalConstant.ATHENTICATION_TOKEN,gameID, forum)
             } catch (e : IOException){
                 Log.d(TAG, "$e")
                 return@launch

@@ -15,6 +15,7 @@ import com.example.teamedup.R
 import com.example.teamedup.databinding.FragmentTournamentDetailBinding
 import com.example.teamedup.repository.model.Tournament
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
+import com.example.teamedup.util.GlobalConstant
 import com.example.teamedup.util.TAG
 import com.example.teamedup.util.moneySuffix
 import kotlinx.coroutines.launch
@@ -50,7 +51,7 @@ class TournamentDetailFragment : Fragment() {
             val response = try {
                 Log.d(TAG, "onViewCreated: Game : ${tournamentDetailFragmentArgs.gameID}")
                 Log.d(TAG, "onViewCreated: Tournament : ${tournamentDetailFragmentArgs.tournamentID}")
-                RetrofitInstances.api.getTournamentDetail(gameID, tournamentID)
+                RetrofitInstances.api.getTournamentDetail(GlobalConstant.ATHENTICATION_TOKEN,gameID, tournamentID)
             } catch (e : IOException){
                 Log.d(TAG, "$e")
                 return@launch

@@ -69,9 +69,7 @@ class CreateTeamFragment : Fragment() {
     }
 
     private fun getData(){
-        memberList.add(User("TONO", "SDfsdfdsf", "Sdfsdfdsfds"))
-        memberList.add(User("coek", "SDfsdfdsf", "Sdfsdfdsfds"))
-        memberList.add(User("KONTEOl", "SDfsdfdsf", "Sdfsdfdsfds"))
+        memberList.add(User("TONO", "SDfsdfdsf", "Sdfsdfdsfds", null, null, null, null ))
         memberIconAdapter.memberList = memberList
         memberNameAdapter.memberList = memberList
     }

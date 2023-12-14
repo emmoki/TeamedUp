@@ -16,6 +16,7 @@ import com.example.teamedup.R
 import com.example.teamedup.databinding.FragmentForumDetailBinding
 import com.example.teamedup.home.forum.comment.CommentItemAdapter
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
+import com.example.teamedup.util.GlobalConstant
 import com.example.teamedup.util.TAG
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -50,7 +51,7 @@ class ForumDetailFragment : Fragment() {
             val response = try {
                 Log.d(TAG, "onViewCreated: Game : ${forumDetailFragmentArgs.gameID}")
                 Log.d(TAG, "onViewCreated: Forum : ${forumDetailFragmentArgs.forumID}")
-                RetrofitInstances.api.getForumDetail(gameID, forumID)
+                RetrofitInstances.api.getForumDetail(GlobalConstant.ATHENTICATION_TOKEN,gameID, forumID)
             } catch (e : IOException){
                 Log.d(TAG, "$e")
                 return@launch
@@ -75,7 +76,7 @@ class ForumDetailFragment : Fragment() {
             val response = try {
                 Log.d(TAG, "onViewCreated: Game : ${forumDetailFragmentArgs.gameID}")
                 Log.d(TAG, "onViewCreated: Forum : ${forumDetailFragmentArgs.forumID}")
-                RetrofitInstances.api.getForumComment(gameID, forumID)
+                RetrofitInstances.api.getForumComment(GlobalConstant.ATHENTICATION_TOKEN,gameID, forumID)
             } catch (e : IOException){
                 Log.d(TAG, "$e")
                 return@launch

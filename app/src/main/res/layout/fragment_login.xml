@@ -44,7 +44,8 @@
             android:id="@+id/et_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"/>
+            android:backgroundTint="@color/white"
+            android:textColor="@color/white"/>
 
 
         <TextView
@@ -58,7 +59,8 @@
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"/>
+            android:backgroundTint="@color/white"
+            android:textColor="@color/white"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
