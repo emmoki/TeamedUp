@@ -7,5 +7,6 @@ data class Forum(
     val upVote: Int,
     val downVote: Int,
     val user: User?,
+    val thumbnail : String?,
     val comments: List<Comment>?
 )

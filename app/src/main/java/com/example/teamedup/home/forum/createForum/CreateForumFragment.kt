@@ -6,6 +6,7 @@ import android.content.ContentResolver
 import android.content.Intent
 import android.graphics.ImageDecoder
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -32,6 +33,7 @@ class CreateForumFragment : Fragment() {
     private val binding get() = _binding
     private val sharedViewModel : SharedViewModel by activityViewModels()
     private val viewModel : CreateForumViewModel by viewModels()
+    private lateinit var createForum : Forum
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,6 +54,7 @@ class CreateForumFragment : Fragment() {
                 if(picture != null){
                     Log.d(TAG, "setUpOtherView: ${PictureRelatedTools.convertBitmapToBase64(picture)}")
                     ivForumThumbnail.setImageBitmap(picture)
+                    viewModel.base64Image = PictureRelatedTools.convertBitmapToBase64(picture)
                     ivForumThumbnail.visibility = View.VISIBLE
                     btnEditForumThumbnail.visibility = View.VISIBLE
                     btnAddForumThumbnail.visibility = View.GONE
@@ -63,8 +66,18 @@ class CreateForumFragment : Fragment() {
                 findNavController().popBackStack()
             }
             toolbar.btnCreate.setOnClickListener {
+                createForum = Forum(
+                    null,
+                    etForumTitle.text.toString(),
+                    etForumContent.text.toString(),
+                    0,
+                    0,
+                    null,
+                    viewModel.base64Image,
+                    null
+                )
                 sharedViewModel.game.observe(viewLifecycleOwner){game ->
-                    postData(game, Forum(null,etForumTitle.text.toString(),etForumContent.text.toString(),0,0,null,null))
+                    postData(game, createForum)
                 }
             }
             btnAddForumThumbnail.setOnClickListener {
@@ -78,7 +91,7 @@ class CreateForumFragment : Fragment() {
 
     private fun pickImageFromGallery(){
         val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
+        intent.data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
         this.startActivityForResult(intent, GlobalConstant.IMAGE_REQUEST_CODE)
     }
 
@@ -100,6 +113,7 @@ class CreateForumFragment : Fragment() {
 //                Log.d(TAG, "getData: ${viewmodel.user}")
             }else{
                 Log.d(TAG, "Response no successful")
+                Log.d(TAG, "postData: ${response.message()}")
             }
         }
     }

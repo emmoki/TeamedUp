@@ -1,18 +1,14 @@
 package com.example.teamedup.util
 
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
-import android.widget.ImageView
+import android.graphics.BitmapFactory
 import java.io.ByteArrayOutputStream
 import android.util.Base64
 
 object PictureRelatedTools {
-    fun convertImageToBitmap(imageView: ImageView) : Bitmap{
-        val drawable = imageView.drawable as BitmapDrawable
-        return drawable.bitmap
+    fun convertBase64ToBitmap(base64: String): Bitmap {
+        val decodeString = Base64.decode(base64, Base64.DEFAULT)
+        return BitmapFactory.decodeByteArray(decodeString, 0, decodeString.size)
     }
 
     fun convertBitmapToBase64(bitmap: Bitmap) : String {

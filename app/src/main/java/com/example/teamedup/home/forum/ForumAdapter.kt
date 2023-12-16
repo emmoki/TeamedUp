@@ -1,14 +1,17 @@
 package com.example.teamedup.home.forum
 
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teamedup.databinding.ForumListItemBinding
 import com.example.teamedup.repository.model.Forum
-import com.example.teamedup.repository.model.Tournament
 import com.example.teamedup.util.ForumRecyclerViewClickListener
+import com.example.teamedup.util.PictureRelatedTools.convertBase64ToBitmap
+import com.example.teamedup.util.TAG
 
 class ForumAdapter : RecyclerView.Adapter<ForumAdapter.ForumViewHolder>() {
     inner class ForumViewHolder(val binding : ForumListItemBinding) : RecyclerView.ViewHolder(binding.root)
@@ -42,9 +45,17 @@ class ForumAdapter : RecyclerView.Adapter<ForumAdapter.ForumViewHolder>() {
     override fun onBindViewHolder(holder: ForumAdapter.ForumViewHolder, position: Int) {
         val forum = forums[position]
         holder.binding.apply {
-//            ivUserLogo
+//            ivUserLogo.
             tvUserName.text = forum.user?.name
 
+            when(forum.thumbnail.isNullOrEmpty()){
+                true -> {ivForumThumbnail.visibility = View.GONE}
+                false -> {
+                    Log.d(TAG, "onBindViewHolder: ${forum.thumbnail}")
+                    ivForumThumbnail.setImageBitmap(convertBase64ToBitmap(forum.thumbnail))
+                    ivForumThumbnail.visibility = View.VISIBLE
+                }
+            }
             tvForumTitle.text = forum.title
             tvForumDescription.text = forum.content
             tvUpvote.text = forum.upVote.toString()
