@@ -15,8 +15,8 @@ class CreateTournamentViewModel : ViewModel() {
     private val _tournamentImagePickSession = MutableLiveData<String>()
     val tournamentImagePickSession : LiveData<String> = _tournamentImagePickSession
 
-    lateinit var iconBase64Image : String
-    lateinit var thumbnailBase64Image : String
+    var iconBase64Image : String? = ""
+    var thumbnailBase64Image : String? = ""
 
     fun setTournamentType(type : String){
         _tournamentType.value = type

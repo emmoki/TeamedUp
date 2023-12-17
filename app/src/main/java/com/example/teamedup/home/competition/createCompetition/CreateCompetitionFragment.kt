@@ -115,21 +115,22 @@ class CreateCompetitionFragment : Fragment() {
         binding.apply {
             toolbar.btnCreate.setOnClickListener {
                 val createdTournament = Tournament(
-                    null,
-                    etTournamentName.text.toString(),
-                    tournamentPersonEachTeam.toString().toInt(),
-                    0,
-                    etTournamentMaxTeam.text.toString().toInt(),
-                    tournamentType.toString(),
-                    true,
-                    etTournamentLocation.toString(),
-                    etTournamentPrizePool.text.toString().toInt(),
-                    etTournamentFee.text.toString().toInt(),
-                    tournamentTier.toString(),
-                    viewModel.iconBase64Image,
-                    viewModel.thumbnailBase64Image,
-                    null
+                    id = null,
+                    name = etTournamentName.text.toString(),
+                    maxPlayerInTeam = tournamentPersonEachTeam.toString().toInt(),
+                    totalParticipant = 0,
+                    maxParticipant = etTournamentMaxTeam.text.toString().toInt(),
+                    type = tournamentType.toString(),
+                    status = true,
+                    location = etTournamentLocation.text.toString(),
+                    prize = etTournamentPrizePool.text.toString().toInt(),
+                    fee = etTournamentFee.text.toString().toInt(),
+                    tier = tournamentTier.toString(),
+                    icon = viewModel.iconBase64Image,
+                    thumbnail = viewModel.thumbnailBase64Image,
+                    game = null
                 )
+                Log.d("CreatedTournament", "CreatedTournament: ${createdTournament}")
                 sharedViewModel.game.observe(viewLifecycleOwner){
                     postData(it, createdTournament)
                 }
@@ -214,10 +215,12 @@ class CreateCompetitionFragment : Fragment() {
             }
             if(response.isSuccessful && response.body() != null){
                 SuccessCreateDialog().show(parentFragmentManager, "SuccessCreateDialog")
+                findNavController().popBackStack()
+                sharedViewModel.setRestart(true)
 //                Log.d(TAG, "getData: ${viewmodel.user}")
             }else{
                 Log.d(TAG, "Response no successful")
-                Log.d(TAG, "postData: ${response.message()}")
+                Log.d(TAG, "postData: ${response.body()}")
             }
         }
     }

@@ -43,8 +43,8 @@ class CompetitionDiscoverFragment : Fragment(), TournamentRecyclerViewClickListe
         super.onViewCreated(view, savedInstanceState)
         sharedViewModel.game.observe(viewLifecycleOwner){game ->
             getData(game)
+            setUpCompetitionRecyclerView()
         }
-        setUpCompetitionRecyclerView()
     }
 
     override fun onResume() {
