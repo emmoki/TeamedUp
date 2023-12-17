@@ -15,15 +15,17 @@ import retrofit2.http.Query
 
 interface GameApi {
 
+    // Authentication
     @POST("/login")
     suspend fun login(@Body loginFormat: LoginFormat): Response<AccessToken>
+    @POST("/register")
+    suspend fun register(@Body registerFormat: RegisterFormat): Response<Any>
 
+    // Game
     @GET("/games")
     suspend fun getGame(
         @Header("Authorization") token : String
     ): Response<FormatResponseGameList>
-//    @POST("/games")
-//    fun createGame() : Response<CreateGames>
 
     // Tournament
     @GET("/games/{game_id}/tournaments")

@@ -30,9 +30,6 @@
         <action
             android:id="@+id/action_homeFragment_to_profileFragment2"
             app:destination="@id/profileFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_claimablePrizeFragment"
-            app:destination="@id/claimablePrizeFragment" />
     </fragment>
     <fragment
         android:id="@+id/tournamentDetailFragment"
@@ -146,10 +143,26 @@
         <action
             android:id="@+id/action_profileFragment_to_claimablePrizeFragment"
             app:destination="@id/claimablePrizeFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_hostedTournamentFragment"
+            app:destination="@id/hostedTournamentFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_participatedTournamentFragment"
+            app:destination="@id/participatedTournamentFragment" />
     </fragment>
     <fragment
         android:id="@+id/claimablePrizeFragment"
-        android:name="com.example.teamedup.home.participatedTournament.ParticipatedTournamentFragment"
+        android:name="com.example.teamedup.home.profile.claimablePrize.ClaimablePrizeFragment"
         android:label="fragment_claimable_prize"
+        tools:layout="@layout/fragment_claimable_prize" >
+    </fragment>
+    <fragment
+        android:id="@+id/hostedTournamentFragment"
+        android:name="com.example.teamedup.home.profile.participatedTournament.HostedTournamentFragment"
+        android:label="HostedTournamentFragment" />
+    <fragment
+        android:id="@+id/participatedTournamentFragment"
+        android:name="com.example.teamedup.home.profile.participatedTournament.ParticipatedTournamentFragment"
+        android:label="fragment_participated_tournament"
         tools:layout="@layout/fragment_participated_tournament" />
 </navigation>
