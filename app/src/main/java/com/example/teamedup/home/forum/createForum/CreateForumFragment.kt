@@ -76,6 +76,7 @@ class CreateForumFragment : Fragment() {
                     viewModel.base64Image,
                     null
                 )
+                Log.d("CreatedTournament", "Created Forum: $createForum")
                 sharedViewModel.game.observe(viewLifecycleOwner){game ->
                     postData(game, createForum)
                 }
