@@ -37,6 +37,12 @@ interface GameApi {
         @Path("game_id") gameID : String,
         @Path("tournament_id") tournamentID : String
     ): Response<FormatResponseTournament>
+    @POST("/games/{game_id}/tournaments")
+    suspend fun createTournament(
+        @Header("Authorization") token : String,
+        @Path("game_id") gameID : String,
+        @Body tournament: Tournament
+    ): Response<Tournament>
 
     // Forum
     @GET("/games/{game_id}/forums")

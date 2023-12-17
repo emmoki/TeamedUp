@@ -78,7 +78,7 @@ class TournamentDetailFragment : Fragment() {
             tvTournamentSummaryPrizepool.text = moneySuffix(viewmodel.tournament.prize.toInt())
             tvTournamentSummaryQuota.text = viewmodel.tournament.totalParticipant.toString()
 
-            tvTournamentGameName.text= viewmodel.tournament.game.name
+            tvTournamentGameName.text= viewmodel.tournament.game?.name
 //            tvTournamentGameYear.text = viewmodel.tournament.game.year
 //            tvTournamentGameDesc.translationX = viewmodel.tournament.game.desc
 

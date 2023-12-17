@@ -87,7 +87,7 @@ class CompetitionDiscoverFragment : Fragment(), TournamentRecyclerViewClickListe
     }
 
     override fun onItemClicked(view: View, tournament: Tournament) {
-        val direction = HomeFragmentDirections.actionHomeFragmentToTournamentDetailFragment(sharedViewModel.game.value!!, tournament.id)
+        val direction = HomeFragmentDirections.actionHomeFragmentToTournamentDetailFragment(sharedViewModel.game.value!!, tournament.id!!)
         findNavController().navigate(direction)
     }
 
