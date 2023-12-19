@@ -1,6 +1,8 @@
 package com.example.teamedup.home
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -22,13 +24,17 @@ import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
+import java.util.*
+import kotlin.collections.ArrayList
 
 
-class HomeFragment : Fragment(), GameRecyclerViewClickListener {
+class HomeFragment : Fragment(), GameRecyclerViewClickListener{
     private lateinit var _binding : FragmentHomeBinding
     private val binding get() = _binding
-    private lateinit var gameAdapter: GameAdapter
+    private lateinit var gameAdapter : GameAdapter
+    private lateinit var gameSearchAdapter : GameSearchAdapter
     private lateinit var viewPagerAdapter: ContentViewPagerAdapter
+    private lateinit var searchedGames : List<Game>
     private val sharedViewModel : SharedViewModel by activityViewModels()
 
     init {
@@ -46,8 +52,10 @@ class HomeFragment : Fragment(), GameRecyclerViewClickListener {
         super.onViewCreated(view, savedInstanceState)
         restartManager()
         setUpAddButton()
-        setupRecyclerView()
+        setUpProfileButton()
         getData()
+        setupGameRecyclerView()
+        setupGameSearchRecyclerView()
         setupViewPager()
     }
 
@@ -65,7 +73,7 @@ class HomeFragment : Fragment(), GameRecyclerViewClickListener {
         }
     }
 
-    private fun setupRecyclerView(){
+    private fun setupGameRecyclerView(){
         binding.rvGameList.apply {
             gameAdapter = GameAdapter()
             adapter = gameAdapter
@@ -74,6 +82,31 @@ class HomeFragment : Fragment(), GameRecyclerViewClickListener {
                 LinearLayoutManager.HORIZONTAL,
                 false)
             gameAdapter.gameListener = this@HomeFragment
+        }
+    }
+
+    private fun setupGameSearchRecyclerView(){
+        binding.apply {
+            rvSearchedGame.apply {
+                setHasFixedSize(true)
+                gameSearchAdapter = GameSearchAdapter()
+                adapter = gameSearchAdapter
+                layoutManager = LinearLayoutManager(
+                    requireContext(),
+                    LinearLayoutManager.VERTICAL,
+                    false)
+                gameSearchAdapter.gameListener = this@HomeFragment
+            }
+            binding.etSearch.addTextChangedListener(object : TextWatcher{
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+                override fun onTextChanged(searchedGame: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    filterList(searchedGame.toString())
+                }
+
+                override fun afterTextChanged(p0: Editable?) {}
+
+            })
         }
     }
 
@@ -96,6 +129,8 @@ class HomeFragment : Fragment(), GameRecyclerViewClickListener {
             }
             if(response.isSuccessful && response.body() != null){
                 gameAdapter.games = response.body()!!.data
+                gameSearchAdapter.games = response.body()!!.data
+                searchedGames = response.body()!!.data
                 Log.d(TAG, "setupRecyclerView: ${gameAdapter.games}")
             }else{
                 Log.d("HomeFragment", "Response no successful")
@@ -104,10 +139,7 @@ class HomeFragment : Fragment(), GameRecyclerViewClickListener {
         }
     }
 
-    override fun onItemClicked(view: View, game: Game) {
-        Log.d("HomeFragment", "onItemClicked: name: ${game.name} id: ${game.id}")
-        sharedViewModel.setGame(game.id)
-    }
+
 
     private fun setUpAddButton(){
         binding.btnAdding.setOnClickListener {
@@ -120,6 +152,14 @@ class HomeFragment : Fragment(), GameRecyclerViewClickListener {
         }
     }
 
+    private fun setUpProfileButton(){
+        binding.apply {
+            llProfile.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+            }
+        }
+    }
+
     private fun restartManager(){
         sharedViewModel.restartHandler.observe(viewLifecycleOwner){
             when(it){
@@ -127,5 +167,22 @@ class HomeFragment : Fragment(), GameRecyclerViewClickListener {
                 false -> {}
             }
         }
+    }
+
+    private fun filterList(query: String) {
+            binding.rvSearchedGame.visibility = View.VISIBLE
+            val filteredList = ArrayList<Game>()
+            for (searchedGameLetter in searchedGames) {
+                if (searchedGameLetter.name.lowercase(Locale.ROOT).contains(query.lowercase())) {
+                    filteredList.add(searchedGameLetter)
+                }
+            }
+            gameSearchAdapter.setFilteredGameList(filteredList)
+    }
+
+    override fun onItemClicked(view: View, game: Game) {
+        Log.d("HomeFragment", "onItemClicked: name: ${game.name} id: ${game.id}")
+        sharedViewModel.setGame(game.id)
+        binding.rvSearchedGame.visibility = View.GONE
     }
 }

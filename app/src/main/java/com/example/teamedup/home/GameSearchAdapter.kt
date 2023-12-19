@@ -6,14 +6,14 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.teamedup.databinding.GameListItemBinding
+import com.example.teamedup.databinding.GameSearchListItemBinding
 import com.example.teamedup.repository.model.Game
 import com.example.teamedup.util.GameRecyclerViewClickListener
 import com.example.teamedup.util.PictureRelatedTools.convertBase64ToBitmap
 
-class GameAdapter : RecyclerView.Adapter<GameAdapter.GameViewHolder>() {
+class GameSearchAdapter : RecyclerView.Adapter<GameSearchAdapter.GameViewHolder>() {
 
-    inner class GameViewHolder(val binding : GameListItemBinding) : ViewHolder(binding.root)
+    inner class GameViewHolder(val binding : GameSearchListItemBinding) : ViewHolder(binding.root)
 
     private val diffCallback = object : DiffUtil.ItemCallback<Game>(){
         override fun areItemsTheSame(oldItem: Game, newItem: Game): Boolean {
@@ -34,7 +34,7 @@ class GameAdapter : RecyclerView.Adapter<GameAdapter.GameViewHolder>() {
     var gameListener : GameRecyclerViewClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
-        return GameViewHolder(GameListItemBinding.inflate(LayoutInflater.from(parent.context),parent, false))
+        return GameViewHolder(GameSearchListItemBinding.inflate(LayoutInflater.from(parent.context),parent, false))
     }
 
     override fun getItemCount(): Int {
@@ -53,5 +53,8 @@ class GameAdapter : RecyclerView.Adapter<GameAdapter.GameViewHolder>() {
         }
     }
 
-
+    fun setFilteredGameList(gameList : List<Game>){
+        games = gameList
+        notifyDataSetChanged()
+    }
 }
