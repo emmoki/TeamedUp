@@ -13,20 +13,20 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.teamedup.R
 import com.example.teamedup.databinding.FragmentRegisterBinding
 import com.example.teamedup.repository.model.format.RegisterFormat
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
-import com.example.teamedup.util.GlobalConstant
-import com.example.teamedup.util.PictureRelatedTools
+import com.example.teamedup.util.*
 import com.example.teamedup.util.PictureRelatedTools.convertBitmapToBase64
-import com.example.teamedup.util.TAG
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
 
 class RegisterFragment : Fragment() {
     private lateinit var _binding : FragmentRegisterBinding
+    private lateinit var errorAdapter : ErrorAdapter
     private val binding get() = _binding
     private val viewModel : RegisterViewModel by viewModels()
     override fun onCreateView(
@@ -51,8 +51,13 @@ class RegisterFragment : Fragment() {
             if(response.isSuccessful && response.body() != null){
                 findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
             }else{
-                Log.d(TAG, "Response no successful")
-                Log.d(TAG, "postData: ${response.body()}")
+                Log.d(TAG, "postData: ${response.errorBody()!!.string()}")
+                Log.d(TAG, "postData: $response")
+                val errorResponse = ErrorUtils.convertApiToGson(response)
+                val errorMessageFromApi = ArrayList<String>()
+                Log.d(TAG, "postData: ${errorResponse.message}")
+                errorMessageFromApi.add(errorResponse.message)
+                errorAdapter.setFilteredGameList(errorMessageFromApi)
             }
         }
     }
@@ -62,6 +67,7 @@ class RegisterFragment : Fragment() {
         setupToolbar()
         setupRegisteringUser()
         setupUserIcon()
+        setupAlertView()
     }
 
     private fun setupToolbar(){
@@ -81,10 +87,16 @@ class RegisterFragment : Fragment() {
                     etName.text.toString(),
                     etEmail.text.toString(),
                     etPassword.text.toString(),
-                    convertBitmapToBase64(viewModel.picture.value!!),
-                    etUserBiography.text.toString()
+                    convertBitmapToBase64(viewModel.picture.value),
+                    etUserBiography.text.toString(),
+                    etPhoneNumber.text.toString()
                 )
-                postData(registerUser)
+                Log.d(TAG, "setupRegisteringUser: $registerUser")
+                val errorMassageList = viewModel.registerValidation(registerUser)
+                when(errorMassageList.isEmpty()){
+                    true -> { postData(registerUser) }
+                    false -> { errorAdapter.setFilteredGameList(errorMassageList) }
+                }
             }
         }
     }
@@ -114,6 +126,17 @@ class RegisterFragment : Fragment() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
         this.startActivityForResult(intent, GlobalConstant.IMAGE_REQUEST_CODE)
+    }
+
+    private fun setupAlertView(){
+        binding.errorMessageList.rvErrorList.apply {
+            errorAdapter = ErrorAdapter()
+            adapter = errorAdapter
+            layoutManager = LinearLayoutManager(
+                requireContext(),
+                LinearLayoutManager.VERTICAL,
+                false)
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

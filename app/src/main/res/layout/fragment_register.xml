@@ -36,7 +36,9 @@
                 android:fontFamily="@font/poppins_regular"
                 android:textColor="@color/light_gray"
                 android:layout_marginBottom="20dp"/>
-
+            <include
+                android:id="@+id/error_message_list"
+                layout="@layout/error_massage_list"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -48,6 +50,7 @@
                 android:id="@+id/et_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:backgroundTint="@color/white"/>
 
             <TextView
@@ -61,6 +64,7 @@
                 android:id="@+id/et_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:backgroundTint="@color/white"/>
 
             <TextView
@@ -74,6 +78,23 @@
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/white"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Password"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/white"/>
+
+            <EditText
+                android:id="@+id/et_phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textColor="@color/white"
                 android:backgroundTint="@color/white"/>
 
             <TextView
