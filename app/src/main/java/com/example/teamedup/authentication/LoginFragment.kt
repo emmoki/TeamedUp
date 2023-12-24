@@ -87,8 +87,8 @@ class LoginFragment : Fragment() {
             }else{
                 val errorResponse = ErrorUtils.convertApiToGson(response)
                 val errorMessageFromApi = ArrayList<String>()
-                Log.d(TAG, "postData: ${errorResponse?.message}")
-                errorMessageFromApi.add(errorResponse?.message!!)
+                Log.d(TAG, "postData: ${errorResponse.message}")
+                errorMessageFromApi.add(errorResponse.message)
                 errorAdapter.setFilteredGameList(errorMessageFromApi)
             }
         }
