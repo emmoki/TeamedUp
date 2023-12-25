@@ -40,9 +40,7 @@ class TournamentDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         getData(tournamentDetailFragmentArgs.gameID, tournamentDetailFragmentArgs.tournamentID)
-
     }
 
     private fun getData(gameID : String, tournamentID : String){
@@ -71,17 +69,40 @@ class TournamentDetailFragment : Fragment() {
     }
 
     private fun setUpView(){
-        with(binding){
+        setUpJoinTournamentView()
+        setupSummaryTournamentInfo()
+        setupDetailTournamentInfo()
+        setupTournamentGameView()
+    }
+
+    private fun setupSummaryTournamentInfo(){
+        binding.apply {
             tvTournamentName.text = viewmodel.tournament.name
             tvTournamentSummaryType.text = viewmodel.tournament.type
             tvTournamentSummaryScenes.text = viewmodel.tournament.tier
             tvTournamentSummaryPrizepool.text = moneySuffix(viewmodel.tournament.prize.toInt())
             tvTournamentSummaryQuota.text = viewmodel.tournament.totalParticipant.toString()
+        }
+    }
 
+    private fun setUpJoinTournamentView(){
+        binding.apply{
+            btnTournamentJoin.setOnClickListener {
+                findNavController().navigate(R.id.action_tournamentDetailFragment_to_createTeamFragment)
+            }
+        }
+    }
+
+    private fun setupTournamentGameView(){
+        binding.apply {
             tvTournamentGameName.text= viewmodel.tournament.game?.name
-//            tvTournamentGameYear.text = viewmodel.tournament.game.year
-//            tvTournamentGameDesc.translationX = viewmodel.tournament.game.desc
+            tvTournamentGameYear.text = viewmodel.tournament.game?.year.toString()
+            tvTournamentGameDesc.text = viewmodel.tournament.game?.description
+        }
+    }
 
+    private fun setupDetailTournamentInfo(){
+        binding.apply {
             tvTournamentMoreInformationLocation.text = viewmodel.tournament.location
             tvTournamentMoreInformationScene.text = viewmodel.tournament.tier
             tvTournamentMoreInformationQuota.text = viewmodel.tournament.totalParticipant.toString()
@@ -89,10 +110,8 @@ class TournamentDetailFragment : Fragment() {
             tvTournamentMoreInformationMemberRequirement.text = viewmodel.tournament.maxPlayerInTeam.toString()
             tvTournamentMoreInformationType.text = viewmodel.tournament.type
             tvTournamentMoreInformationPrizepool.text = moneySuffix(viewmodel.tournament.prize.toInt())
-
-            btnTournamentJoin.setOnClickListener {
-                findNavController().navigate(R.id.action_tournamentDetailFragment_to_createTeamFragment)
-            }
         }
     }
+
+
 }
