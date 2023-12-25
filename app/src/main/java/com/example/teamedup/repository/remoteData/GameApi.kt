@@ -81,4 +81,10 @@ interface GameApi {
         @Body comment: Comment
     ): Response<Comment>
 
+
+    // User
+    @GET("/profile")
+    suspend fun getUser(
+        @Header("Authorization") token : String,
+    ): Response<FormatResponseProfile>
 }

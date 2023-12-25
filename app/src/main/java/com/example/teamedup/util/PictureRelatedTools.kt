@@ -11,9 +11,9 @@ object PictureRelatedTools {
         return BitmapFactory.decodeByteArray(decodeString, 0, decodeString.size)
     }
 
-    fun convertBitmapToBase64(bitmap: Bitmap) : String {
+    fun convertBitmapToBase64(bitmap: Bitmap?) : String {
         val stream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream)
+        bitmap?.compress(Bitmap.CompressFormat.JPEG, 50, stream)
         val image = stream.toByteArray()
         return Base64.encodeToString(image, Base64.DEFAULT)
     }

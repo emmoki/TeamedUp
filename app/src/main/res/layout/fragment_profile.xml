@@ -18,8 +18,10 @@
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btn_main_joined_tournament"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
@@ -28,7 +30,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Join Tournament"
+                    android:text="Joined Tournament"
                     android:textColor="@color/white"
                     android:textSize="15dp"
                     android:fontFamily="@font/poppins_medium"
@@ -47,6 +49,7 @@
                 android:layout_width="10dp"
                 android:layout_height="match_parent"/>
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btn_main_hosted_tournament"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
@@ -55,7 +58,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Host Tournament"
+                    android:text="Hosted Tournament"
                     android:textColor="@color/white"
                     android:textSize="15dp"
                     android:fontFamily="@font/poppins_medium"
@@ -76,14 +79,17 @@
             android:layout_height="wrap_content"
             android:text="Personal activity"
             android:textColor="@color/white"
-            android:fontFamily="@font/poppins_bold"/>
+            android:fontFamily="@font/poppins_bold"
+            android:layout_marginBottom="5dp"/>
         <LinearLayout
+            android:id="@+id/ll_joined_tournament"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp">
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
@@ -97,8 +103,10 @@
                     android:text="Joined Tournament"/>
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/ll_hosted_tournament"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp">
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
@@ -112,8 +120,10 @@
                     android:text="Hosted Tournament"/>
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/ll_clamaible_prize"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
@@ -133,39 +143,39 @@
                 android:textColor="@color/white"
                 android:fontFamily="@font/poppins_bold"/>
             <TextView
+                android:id="@+id/tv_profile_biography"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Miracle- joined Balkan Bears at the beginning of 2015, only to be removed from the team about four months later. While he was teamless, he began gaining recognition in the European scene by climbing the matchmaking rating leaderboards in pub games. Miracle- eventually became the #1 player by MMR in the European division and the world, surpassing w33."
                 android:textColor="@color/white"
                 android:fontFamily="@font/poppins_regular"
-                android:textSize="10dp"/>
+                android:textSize="10dp"
+                android:layout_marginBottom="5dp"/>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
                     android:src="@drawable/ic_contact"
                     android:layout_marginEnd="10dp"/>
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tv_profile_contact_info"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_medium"
+                    android:text="(+62) 081321321321"
                     android:textColor="@color/white"
-                    android:text="Contact Info"/>
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="10dp"/>
             </LinearLayout>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="(+62) 081321321321"
-                android:textColor="@color/white"
-                android:fontFamily="@font/poppins_regular"
-                android:textSize="10dp"/>
+
         </LinearLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:padding="5dp"
+            android:layout_marginVertical="10dp"
             android:background="@drawable/button_purple">
             <ImageView
                 android:layout_width="20dp"
@@ -187,11 +197,20 @@
             android:layout_height="wrap_content"
             android:text="Tournament History"
             android:textColor="@color/white"
-            android:fontFamily="@font/poppins_bold"/>
-        <androidx.recyclerview.widget.RecyclerView
+            android:fontFamily="@font/poppins_bold"
+            android:layout_marginBottom="5dp"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            tools:listitem="@layout/tournamen_history_list_item"/>
+            android:layout_height="wrap_content">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_tournament_history_list"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                tools:listitem="@layout/tournament_history_list_item"
+                app:layout_constraintTop_toTopOf="parent"
+                android:maxHeight="200dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="50dp"
             android:layout_height="wrap_content"
@@ -213,5 +232,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </LinearLayout>
 </LinearLayout>
