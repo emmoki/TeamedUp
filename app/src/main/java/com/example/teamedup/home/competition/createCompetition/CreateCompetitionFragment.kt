@@ -12,7 +12,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -21,12 +20,16 @@ import com.example.teamedup.R
 import com.example.teamedup.databinding.FragmentCreateCompetitionBinding
 import com.example.teamedup.home.SharedViewModel
 import com.example.teamedup.home.forum.createForum.SuccessCreateDialog
-import com.example.teamedup.repository.model.Forum
 import com.example.teamedup.repository.model.Tournament
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
 import com.example.teamedup.util.GlobalConstant
 import com.example.teamedup.util.PictureRelatedTools
+import com.example.teamedup.util.PictureRelatedTools.uploadImage1
+import com.example.teamedup.util.PictureRelatedTools.uploadImage2
+import com.example.teamedup.util.PictureRelatedTools.uploadedImage1
+import com.example.teamedup.util.PictureRelatedTools.uploadedImage2
 import com.example.teamedup.util.TAG
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
@@ -114,25 +117,35 @@ class CreateCompetitionFragment : Fragment() {
     private fun setupConfirmButton(){
         binding.apply {
             toolbar.btnCreate.setOnClickListener {
-                val createdTournament = Tournament(
-                    id = null,
-                    name = etTournamentName.text.toString(),
-                    maxPlayerInTeam = tournamentPersonEachTeam.toString().toInt(),
-                    totalParticipant = 0,
-                    maxParticipant = etTournamentMaxTeam.text.toString().toInt(),
-                    type = tournamentType.toString(),
-                    status = true,
-                    location = etTournamentLocation.text.toString(),
-                    prize = etTournamentPrizePool.text.toString().toInt(),
-                    fee = etTournamentFee.text.toString().toInt(),
-                    tier = tournamentTier.toString(),
-                    icon = viewModel.iconBase64Image,
-                    thumbnail = viewModel.thumbnailBase64Image,
-                    game = null
-                )
-                Log.d("CreatedTournament", "CreatedTournament: ${createdTournament}")
-                sharedViewModel.game.observe(viewLifecycleOwner){
-                    postData(it, createdTournament)
+                uploadImage1(viewModel.iconUploadedImage)
+                uploadImage2(viewModel.thumbnailUploadedImage)
+                lifecycleScope.launch {
+                    if(viewModel.iconUploadedImage != null){
+                        delay(5000)
+                    }
+                    if(viewModel.thumbnailUploadedImage != null){
+                        delay(5000)
+                    }
+                    val createdTournament = Tournament(
+                        id = null,
+                        name = etTournamentName.text.toString(),
+                        maxPlayerInTeam = tournamentPersonEachTeam.toString().toInt(),
+                        totalParticipant = 0,
+                        maxParticipant = etTournamentMaxTeam.text.toString().toInt(),
+                        type = tournamentType.toString(),
+                        status = true,
+                        location = etTournamentLocation.text.toString(),
+                        prize = etTournamentPrizePool.text.toString().toInt(),
+                        fee = etTournamentFee.text.toString().toInt(),
+                        tier = tournamentTier.toString(),
+                        icon = uploadedImage1,
+                        thumbnail = uploadedImage2,
+                        game = null
+                    )
+                    Log.d("CreatedTournament", "CreatedTournament: ${createdTournament}")
+                    sharedViewModel.game.observe(viewLifecycleOwner){
+                        postData(it, createdTournament)
+                    }
                 }
             }
         }
@@ -161,7 +174,6 @@ class CreateCompetitionFragment : Fragment() {
             viewModel.tournamentIcon.observe(viewLifecycleOwner){picture ->
                 if(picture != null){
                     ivTournamentIcon.setImageBitmap(picture)
-                    viewModel.iconBase64Image = PictureRelatedTools.convertBitmapToBase64(picture)
                     ivTournamentIcon.visibility = View.VISIBLE
                     btnEditTournamentIcon.visibility = View.VISIBLE
                     btnAddTournamentIcon.visibility = View.GONE
@@ -193,7 +205,6 @@ class CreateCompetitionFragment : Fragment() {
             viewModel.tournamentThumbnail.observe(viewLifecycleOwner){picture ->
                 if(picture != null){
                     ivTournamentThumbnail.setImageBitmap(picture)
-                    viewModel.thumbnailBase64Image = PictureRelatedTools.convertBitmapToBase64(picture)
                     ivTournamentThumbnail.visibility = View.VISIBLE
                     btnEditTournamentThumbnail.visibility = View.VISIBLE
                     btnAddTournamentThumbnail.visibility = View.GONE
@@ -240,10 +251,22 @@ class CreateCompetitionFragment : Fragment() {
             viewModel.tournamentImagePickSession.observe(viewLifecycleOwner){
                 Log.d(TAG, "onActivityResult: $it")
                 when(it){
-                    "Add Icon" -> {viewModel.setTournamentIcon(imageBitmap)}
-                    "Edit Icon" -> {viewModel.setTournamentIcon(imageBitmap)}
-                    "Add Thumbnail" -> {viewModel.setTournamentThumbnail(imageBitmap)}
-                    "Edit Thumbnail" -> {viewModel.setTournamentThumbnail(imageBitmap)}
+                    "Add Icon" -> {
+                        viewModel.setTournamentIcon(imageBitmap)
+                        viewModel.iconUploadedImage = imageUri
+                    }
+                    "Edit Icon" -> {
+                        viewModel.setTournamentIcon(imageBitmap)
+                        viewModel.iconUploadedImage = imageUri
+                    }
+                    "Add Thumbnail" -> {
+                        viewModel.setTournamentThumbnail(imageBitmap)
+                        viewModel.thumbnailUploadedImage = imageUri
+                    }
+                    "Edit Thumbnail" -> {
+                        viewModel.setTournamentThumbnail(imageBitmap)
+                        viewModel.thumbnailUploadedImage = imageUri
+                    }
                 }
             }
         }

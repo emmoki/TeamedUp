@@ -23,6 +23,7 @@ import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstance
 import com.example.teamedup.util.GlobalConstant
 import com.example.teamedup.util.PictureRelatedTools
 import com.example.teamedup.util.TAG
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
@@ -46,46 +47,69 @@ class CreateForumFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpOtherView()
+        setupPictureView()
+        setupToolbarView()
+        setupCreateForumView()
     }
 
     private fun setUpOtherView(){
         binding.apply {
-            viewModel.picture.observe(viewLifecycleOwner){picture ->
-                if(picture != null){
-                    Log.d(TAG, "setUpOtherView: ${PictureRelatedTools.convertBitmapToBase64(picture)}")
-                    ivForumThumbnail.setImageBitmap(picture)
-                    viewModel.base64Image = PictureRelatedTools.convertBitmapToBase64(picture)
-                    ivForumThumbnail.visibility = View.VISIBLE
-                    btnEditForumThumbnail.visibility = View.VISIBLE
-                    btnAddForumThumbnail.visibility = View.GONE
-                }
-            }
-            toolbar.tvToolbarTitle.text = "Create Forum"
-            toolbar.btnCreate.text = "Post"
-            toolbar.back.setOnClickListener {
-                findNavController().popBackStack()
-            }
-            toolbar.btnCreate.setOnClickListener {
-                createForum = Forum(
-                    null,
-                    etForumTitle.text.toString(),
-                    etForumContent.text.toString(),
-                    0,
-                    0,
-                    null,
-                    viewModel.base64Image,
-                    null
-                )
-                Log.d("CreatedTournament", "Created Forum: $createForum")
-                sharedViewModel.game.observe(viewLifecycleOwner){game ->
-                    postData(game, createForum)
-                }
-            }
             btnAddForumThumbnail.setOnClickListener {
                 pickImageFromGallery()
             }
             btnEditForumThumbnail.setOnClickListener {
                 pickImageFromGallery()
+            }
+        }
+    }
+
+    private fun setupCreateForumView(){
+        binding.apply {
+            toolbar.btnCreate.setOnClickListener {
+                PictureRelatedTools.uploadImage1(viewModel.uploadedPicture)
+                lifecycleScope.launch {
+                    if(viewModel.uploadedPicture != null){
+                        delay(5000)
+                    }
+                    createForum = Forum(
+                        null,
+                        etForumTitle.text.toString(),
+                        etForumContent.text.toString(),
+                        0,
+                        0,
+                        null,
+                        PictureRelatedTools.uploadedImage1,
+                        null
+                    )
+                    Log.d("CreatedTournament", "Created Forum: $createForum")
+                    sharedViewModel.game.observe(viewLifecycleOwner){game ->
+                        postData(game, createForum)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setupToolbarView(){
+        binding.apply {
+            toolbar.tvToolbarTitle.text = "Create Forum"
+            toolbar.btnCreate.text = "Post"
+            toolbar.back.setOnClickListener {
+                findNavController().popBackStack()
+            }
+        }
+    }
+
+    private fun setupPictureView(){
+        binding.apply {
+            viewModel.picture.observe(viewLifecycleOwner){picture ->
+                if(picture != null){
+                    Log.d(TAG, "setUpOtherView: ${PictureRelatedTools.convertBitmapToBase64(picture)}")
+                    ivForumThumbnail.setImageBitmap(picture)
+                    ivForumThumbnail.visibility = View.VISIBLE
+                    btnEditForumThumbnail.visibility = View.VISIBLE
+                    btnAddForumThumbnail.visibility = View.GONE
+                }
             }
         }
     }
@@ -127,6 +151,7 @@ class CreateForumFragment : Fragment() {
             val imageSource = ImageDecoder.createSource(requireActivity().contentResolver, imageUri!!)
             val imageBitmap = ImageDecoder.decodeBitmap(imageSource)
             viewModel.setPicture(imageBitmap)
+            viewModel.uploadedPicture = imageUri
         }
     }
 }

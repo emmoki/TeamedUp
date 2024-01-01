@@ -8,16 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.teamedup.R
 import com.example.teamedup.databinding.FragmentForumDetailBinding
 import com.example.teamedup.home.forum.comment.CommentItemAdapter
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
 import com.example.teamedup.util.GlobalConstant
 import com.example.teamedup.util.TAG
+import com.squareup.picasso.Picasso
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
@@ -26,7 +25,7 @@ class ForumDetailFragment : Fragment() {
     private lateinit var _binding : FragmentForumDetailBinding
     private val binding get() = _binding
     private val forumDetailFragmentArgs : ForumDetailFragmentArgs by navArgs()
-    private val viewmodel : ForumDetailViewmodel by viewModels()
+    private val viewModel : ForumDetailViewmodel by viewModels()
     private lateinit var commentAdapter : CommentItemAdapter
 
     override fun onCreateView(
@@ -60,8 +59,8 @@ class ForumDetailFragment : Fragment() {
                 return@launch
             }
             if(response.isSuccessful && response.body() != null){
-                viewmodel.forum = response.body()!!.data
-                Log.d(TAG, "getData: ${viewmodel.forum}")
+                viewModel.forum = response.body()!!.data
+                Log.d(TAG, "getData: ${viewModel.forum}")
                 setUpView()
             }else{
                 Log.d(TAG, "Response no successful")
@@ -106,10 +105,16 @@ class ForumDetailFragment : Fragment() {
 
     private fun setUpView(){
         binding.apply {
-            tvAuthorName.text = viewmodel.forum.user?.name
-            tvForumUpVote.text = viewmodel.forum.upVote.toString()
-            tvForumDownVote.text = viewmodel.forum.downVote.toString()
-            tvForumContent.text = viewmodel.forum.content
+            Picasso.with(context)
+                .load(viewModel.forum.user?.picture)
+                .into(ivAuthor)
+            tvAuthorName.text = viewModel.forum.user?.name
+            Picasso.with(context)
+                .load(viewModel.forum.thumbnail)
+                .into(ivForumImage)
+            tvForumUpVote.text = viewModel.forum.upVote.toString()
+            tvForumDownVote.text = viewModel.forum.downVote.toString()
+            tvForumContent.text = viewModel.forum.content
         }
     }
 

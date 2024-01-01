@@ -20,9 +20,13 @@ import com.example.teamedup.repository.model.format.RegisterFormat
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
 import com.example.teamedup.util.*
 import com.example.teamedup.util.PictureRelatedTools.convertBitmapToBase64
+import com.example.teamedup.util.PictureRelatedTools.uploadImage1
+import com.example.teamedup.util.PictureRelatedTools.uploadedImage1
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
+import kotlin.collections.ArrayList
 
 class RegisterFragment : Fragment() {
     private lateinit var _binding : FragmentRegisterBinding
@@ -83,23 +87,36 @@ class RegisterFragment : Fragment() {
     private fun setupRegisteringUser(){
         binding.apply {
             btnConfirm.setOnClickListener {
-                val registerUser = RegisterFormat(
-                    etName.text.toString(),
-                    etEmail.text.toString(),
-                    etPassword.text.toString(),
-                    convertBitmapToBase64(viewModel.picture.value),
-                    etUserBiography.text.toString(),
-                    etPhoneNumber.text.toString()
-                )
-                Log.d(TAG, "setupRegisteringUser: $registerUser")
-                val errorMassageList = viewModel.registerValidation(registerUser)
-                when(errorMassageList.isEmpty()){
-                    true -> { postData(registerUser) }
-                    false -> { errorAdapter.setFilteredGameList(errorMassageList) }
+                uploadImage1(viewModel.uploadedImage)
+                lifecycleScope.launch {
+                    if(viewModel.uploadedImage != null){
+                        delay(5000)
+                    }
+                    val registerUser = RegisterFormat(
+                        etName.text.toString(),
+                        etEmail.text.toString(),
+                        etPassword.text.toString(),
+                        uploadedImage1,
+                        etUserBiography.text.toString(),
+                        etPhoneNumber.text.toString()
+                    )
+                    Log.d(TAG, "setupRegisteringUser: $registerUser")
+                    val errorMassageList = viewModel.registerValidation(registerUser)
+                    when(errorMassageList.isEmpty()){
+                        true -> {
+                            errorMessageList.rvErrorList.visibility = View.GONE
+                            postData(registerUser)
+                        }
+                        false -> {
+                            errorMessageList.rvErrorList.visibility = View.VISIBLE
+                            errorAdapter.setFilteredGameList(errorMassageList)
+                        }
+                    }
                 }
             }
         }
     }
+
 
     private fun setupUserIcon(){
         binding.apply {
@@ -113,7 +130,6 @@ class RegisterFragment : Fragment() {
                 if(picture != null){
                     Log.d(TAG, "setUpOtherView: ${convertBitmapToBase64(picture)}")
                     ivUserProfileIcon.setImageBitmap(picture)
-                    viewModel.base64Image = convertBitmapToBase64(picture)
                     ivUserProfileIcon.visibility = View.VISIBLE
                     btnEditUserProfileIcon.visibility = View.VISIBLE
                     btnAddUserProfileIcon.visibility = View.GONE
@@ -147,6 +163,7 @@ class RegisterFragment : Fragment() {
             val imageSource = ImageDecoder.createSource(requireActivity().contentResolver, imageUri!!)
             val imageBitmap = ImageDecoder.decodeBitmap(imageSource)
             viewModel.setPicture(imageBitmap)
+            viewModel.uploadedImage = imageUri
         }
     }
 }

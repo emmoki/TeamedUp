@@ -1,5 +1,6 @@
 package com.example.teamedup.home.forum
 
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,8 +13,10 @@ import com.example.teamedup.repository.model.Forum
 import com.example.teamedup.util.ForumRecyclerViewClickListener
 import com.example.teamedup.util.PictureRelatedTools.convertBase64ToBitmap
 import com.example.teamedup.util.TAG
+import com.squareup.picasso.Picasso
 
 class ForumAdapter : RecyclerView.Adapter<ForumAdapter.ForumViewHolder>() {
+    private lateinit var context : Context
     inner class ForumViewHolder(val binding : ForumListItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     private val diffCallback = object : DiffUtil.ItemCallback<Forum>(){
@@ -39,6 +42,7 @@ class ForumAdapter : RecyclerView.Adapter<ForumAdapter.ForumViewHolder>() {
         parent: ViewGroup,
         viewType: Int
     ): ForumAdapter.ForumViewHolder {
+        context = parent.context
         return ForumViewHolder(ForumListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
@@ -52,7 +56,9 @@ class ForumAdapter : RecyclerView.Adapter<ForumAdapter.ForumViewHolder>() {
                 true -> {ivForumThumbnail.visibility = View.GONE}
                 false -> {
                     Log.d(TAG, "onBindViewHolder: ${forum.thumbnail}")
-                    ivForumThumbnail.setImageBitmap(convertBase64ToBitmap(forum.thumbnail))
+                    Picasso.with(context)
+                        .load(forum.thumbnail)
+                        .into(ivForumThumbnail)
                     ivForumThumbnail.visibility = View.VISIBLE
                 }
             }

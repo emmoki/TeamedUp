@@ -11,7 +11,7 @@ import com.example.teamedup.util.PictureRelatedTools
 class CreateForumViewModel : ViewModel() {
     private val _picture = MutableLiveData<Bitmap>(null)
     val picture : LiveData<Bitmap> = _picture
-    lateinit var base64Image : String
+    var uploadedPicture : Uri? = null
 
     fun setPicture(bitmap: Bitmap?){
         _picture.value = bitmap!!

@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'androidx.navigation.safeargs'
+    id 'com.google.gms.google-services'
 }
 
 def localProperties = new Properties()
@@ -49,6 +50,8 @@ android {
 }
 
 dependencies {
+
+
     var nav_version = "2.7.4"
     var lifecycle_version = "2.6.2"
 
@@ -81,4 +84,8 @@ dependencies {
 
     // Livedata
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
+
+    // Remote Storage and get Image by URL
+    implementation 'com.google.firebase:firebase-storage:20.0.1'
+    implementation "com.squareup.picasso:picasso:2.4.0"
 }

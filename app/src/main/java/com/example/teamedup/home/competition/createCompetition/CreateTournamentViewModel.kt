@@ -1,6 +1,7 @@
 package com.example.teamedup.home.competition.createCompetition
 
 import android.graphics.Bitmap
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,8 +16,9 @@ class CreateTournamentViewModel : ViewModel() {
     private val _tournamentImagePickSession = MutableLiveData<String>()
     val tournamentImagePickSession : LiveData<String> = _tournamentImagePickSession
 
-    var iconBase64Image : String? = ""
-    var thumbnailBase64Image : String? = ""
+
+    var iconUploadedImage : Uri? = null
+    var thumbnailUploadedImage : Uri? = null
 
     fun setTournamentType(type : String){
         _tournamentType.value = type

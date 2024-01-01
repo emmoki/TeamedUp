@@ -18,6 +18,7 @@ import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstance
 import com.example.teamedup.util.GlobalConstant
 import com.example.teamedup.util.TAG
 import com.example.teamedup.util.moneySuffix
+import com.squareup.picasso.Picasso
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
@@ -95,6 +96,11 @@ class TournamentDetailFragment : Fragment() {
 
     private fun setupTournamentGameView(){
         binding.apply {
+            if(viewmodel.tournament.game?.logo != ""){
+                Picasso.with(context)
+                    .load(viewmodel.tournament.game?.logo)
+                    .into(ivTournamentGameIcon)
+            }
             tvTournamentGameName.text= viewmodel.tournament.game?.name
             tvTournamentGameYear.text = viewmodel.tournament.game?.year.toString()
             tvTournamentGameDesc.text = viewmodel.tournament.game?.description
@@ -103,6 +109,16 @@ class TournamentDetailFragment : Fragment() {
 
     private fun setupDetailTournamentInfo(){
         binding.apply {
+            if(viewmodel.tournament.icon != ""){
+                Picasso.with(context)
+                    .load(viewmodel.tournament.icon)
+                    .into(ivTournamentIcon)
+            }
+            if(viewmodel.tournament.thumbnail != ""){
+                Picasso.with(context)
+                    .load(viewmodel.tournament.thumbnail)
+                    .into(ivTournamentThumbnail)
+            }
             tvTournamentMoreInformationLocation.text = viewmodel.tournament.location
             tvTournamentMoreInformationScene.text = viewmodel.tournament.tier
             tvTournamentMoreInformationQuota.text = viewmodel.tournament.totalParticipant.toString()

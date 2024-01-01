@@ -1,6 +1,7 @@
 package com.example.teamedup.authentication
 
 import android.graphics.Bitmap
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,7 +10,8 @@ import com.example.teamedup.repository.model.format.RegisterFormat
 class RegisterViewModel : ViewModel() {
     private val _picture = MutableLiveData<Bitmap>(null)
     val picture : LiveData<Bitmap> = _picture
-    lateinit var base64Image : String
+    var uploadedImage : Uri? = null
+    lateinit var imageUrl : String
 
     fun setPicture(bitmap: Bitmap?){
         _picture.value = bitmap!!
