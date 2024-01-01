@@ -85,7 +85,7 @@ class LoginFragment : Fragment() {
                 GlobalConstant.ATHENTICATION_TOKEN = "Bearer ${token.access_token}"
                 findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
             }else{
-                val errorResponse = ErrorUtils.convertApiToGson(response)
+                val errorResponse = ErrorUtils.convertApiToGson(response.errorBody()!!.string())
                 val errorMessageFromApi = ArrayList<String>()
                 Log.d(TAG, "postData: ${errorResponse.message}")
                 errorMessageFromApi.add(errorResponse.message)

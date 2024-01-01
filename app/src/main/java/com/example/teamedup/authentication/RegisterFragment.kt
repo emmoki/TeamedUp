@@ -55,9 +55,8 @@ class RegisterFragment : Fragment() {
             if(response.isSuccessful && response.body() != null){
                 findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
             }else{
-                Log.d(TAG, "postData: ${response.errorBody()!!.string()}")
                 Log.d(TAG, "postData: $response")
-                val errorResponse = ErrorUtils.convertApiToGson(response)
+                val errorResponse = ErrorUtils.convertApiToGson(response.errorBody()!!.string())
                 val errorMessageFromApi = ArrayList<String>()
                 Log.d(TAG, "postData: ${errorResponse.message}")
                 errorMessageFromApi.add(errorResponse.message)

@@ -12,13 +12,12 @@ import retrofit2.Response
 
 
 object ErrorUtils {
-    fun convertApiToGson(response : Response<*>) : ApiError{
+    fun convertApiToGson(errorBodyString : String) : ApiError{
         val gson = Gson()
         val type = object : TypeToken<ApiError>() {}.type
-        val errorBodyString = response.errorBody()!!.string()
+        Log.d(TAG, "errorBodyString: $errorBodyString")
         var errorResponse: ApiError = gson.fromJson(errorBodyString, type)
-        Log.d(TAG, "errorBodyString: ${errorBodyString}")
-        Log.d(TAG, "errorResponse: ${errorBodyString}")
+        Log.d(TAG, "errorResponse: $errorBodyString")
 
         return errorResponse
     }
