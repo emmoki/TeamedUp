@@ -24,5 +24,8 @@ data class User(
     val biography : String?,
 
     @SerializedName("phoneNum")
-    val phoneNum : String
+    val phoneNum : String,
+
+    @SerializedName("hostedTournament")
+    val hostedTournament : List<Tournament>
 )

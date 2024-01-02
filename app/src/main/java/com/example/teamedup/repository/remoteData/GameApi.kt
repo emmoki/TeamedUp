@@ -39,12 +39,25 @@ interface GameApi {
         @Path("game_id") gameID : String,
         @Path("tournament_id") tournamentID : String
     ): Response<FormatResponseTournament>
+    @POST("/games/{game_id}/tournaments/{tournament_id}/join")
+    suspend fun joinTournament(
+        @Header("Authorization") token : String,
+        @Path("game_id") gameID : String,
+        @Path("tournament_id") tournamentID : String,
+        @Body team : Team
+    ): Response<JoinTournamentFormat>
     @POST("/games/{game_id}/tournaments")
     suspend fun createTournament(
         @Header("Authorization") token : String,
         @Path("game_id") gameID : String,
         @Body tournament: Tournament
     ): Response<Tournament>
+
+    // Search User
+    @GET("/users")
+    suspend fun getUserList(
+        @Header("Authorization") token : String,
+    ): Response<FormatResponseUserList>
 
     // Forum
     @GET("/games/{game_id}/forums")

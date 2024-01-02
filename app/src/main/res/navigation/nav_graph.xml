@@ -57,6 +57,17 @@
         <action
             android:id="@+id/action_createTeamFragment_to_tournamentDetailFragment"
             app:destination="@id/tournamentDetailFragment" />
+        <argument
+            android:name="gameID"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="tournamentID"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="memberMax"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/openingFragmentHost"

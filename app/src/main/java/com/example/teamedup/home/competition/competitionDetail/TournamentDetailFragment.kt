@@ -89,7 +89,12 @@ class TournamentDetailFragment : Fragment() {
     private fun setUpJoinTournamentView(){
         binding.apply{
             btnTournamentJoin.setOnClickListener {
-                findNavController().navigate(R.id.action_tournamentDetailFragment_to_createTeamFragment)
+                val direction = TournamentDetailFragmentDirections.actionTournamentDetailFragmentToCreateTeamFragment(
+                    viewmodel.tournament.game?.id,
+                    viewmodel.tournament.id,
+                    viewmodel.tournament.maxPlayerInTeam
+                )
+                findNavController().navigate(direction)
             }
         }
     }
