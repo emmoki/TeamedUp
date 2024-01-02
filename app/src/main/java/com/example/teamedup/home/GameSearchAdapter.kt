@@ -1,5 +1,6 @@
 package com.example.teamedup.home
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -10,9 +11,10 @@ import com.example.teamedup.databinding.GameSearchListItemBinding
 import com.example.teamedup.repository.model.Game
 import com.example.teamedup.util.GameRecyclerViewClickListener
 import com.example.teamedup.util.PictureRelatedTools.convertBase64ToBitmap
+import com.squareup.picasso.Picasso
 
 class GameSearchAdapter : RecyclerView.Adapter<GameSearchAdapter.GameViewHolder>() {
-
+    private lateinit var context : Context
     inner class GameViewHolder(val binding : GameSearchListItemBinding) : ViewHolder(binding.root)
 
     private val diffCallback = object : DiffUtil.ItemCallback<Game>(){
@@ -34,6 +36,7 @@ class GameSearchAdapter : RecyclerView.Adapter<GameSearchAdapter.GameViewHolder>
     var gameListener : GameRecyclerViewClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
+        context = parent.context
         return GameViewHolder(GameSearchListItemBinding.inflate(LayoutInflater.from(parent.context),parent, false))
     }
 
@@ -46,7 +49,9 @@ class GameSearchAdapter : RecyclerView.Adapter<GameSearchAdapter.GameViewHolder>
             val game = games[position]
 
             tvGameTitle.text = game.name
-            ivGameLogo.setImageBitmap(convertBase64ToBitmap(game.logo))
+            Picasso.with(context)
+                .load(game.logo)
+                .into(ivGameLogo)
             itemGame.setOnClickListener {
                 gameListener?.onItemClicked(it, game)
             }
