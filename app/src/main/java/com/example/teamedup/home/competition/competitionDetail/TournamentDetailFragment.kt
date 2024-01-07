@@ -11,13 +11,18 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.teamedup.R
 import com.example.teamedup.databinding.FragmentTournamentDetailBinding
+import com.example.teamedup.databinding.MemberListIconItemBinding
+import com.example.teamedup.home.competition.createTeam.MemberIconAdapter
 import com.example.teamedup.repository.model.Tournament
+import com.example.teamedup.repository.model.User
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
 import com.example.teamedup.util.GlobalConstant
 import com.example.teamedup.util.TAG
 import com.example.teamedup.util.moneySuffix
+import com.google.firebase.platforminfo.GlobalLibraryVersionRegistrar
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -29,6 +34,7 @@ class TournamentDetailFragment : Fragment() {
     private val binding get() = _binding
     private val viewmodel : TournamentDetailViewmodel by viewModels()
     private val tournamentDetailFragmentArgs : TournamentDetailFragmentArgs by navArgs()
+    private lateinit var memberIconAdapter : MemberIconAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -70,6 +76,7 @@ class TournamentDetailFragment : Fragment() {
     }
 
     private fun setUpView(){
+        sessionManager(GlobalConstant.user)
         setUpJoinTournamentView()
         setupSummaryTournamentInfo()
         setupDetailTournamentInfo()
@@ -134,5 +141,34 @@ class TournamentDetailFragment : Fragment() {
         }
     }
 
+    private fun sessionManager(user: User){
+        Log.d(TAG, "sessionManager: ${viewmodel.tournament.teams}")
+        if(viewmodel.tournament.host?.id == user.id){
+            binding.btnTournamentJoin.visibility = View.GONE
+            binding.llCompleteCompetition.visibility = View.VISIBLE
+        }
+        if(viewmodel.tournament.teams.isNullOrEmpty()){ } else {
+            binding.btnTournamentJoin.visibility = View.GONE
+            binding.clMemberIcon.visibility = View.VISIBLE
+            setUpMemberIconRecyclerView(GlobalConstant.user)
+        }
+    }
 
+    private fun setUpMemberIconRecyclerView(user: User){
+        binding.rvMemberIcon.apply {
+            memberIconAdapter = MemberIconAdapter()
+            adapter = memberIconAdapter
+            layoutManager = LinearLayoutManager(
+                requireContext(),
+                LinearLayoutManager.HORIZONTAL,
+                false)
+            for(team in viewmodel.tournament.teams!!){
+                if(team.users.contains(user)){
+                    for(user in team.users){
+                        memberIconAdapter.setSelectedMemberList(user)
+                    }
+                }
+            }
+        }
+    }
 }

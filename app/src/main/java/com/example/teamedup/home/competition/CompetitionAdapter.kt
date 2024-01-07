@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.teamedup.databinding.CompetitionItemBinding
 import com.example.teamedup.repository.model.Tournament
 import com.example.teamedup.util.GameRecyclerViewClickListener
+import com.example.teamedup.util.GlobalConstant
 import com.example.teamedup.util.TournamentRecyclerViewClickListener
 import com.squareup.picasso.Picasso
 
@@ -58,6 +59,10 @@ class CompetitionAdapter : RecyclerView.Adapter<CompetitionAdapter.CompetitionVi
             tvCompetitionPrizePool.text = tournament.prize.toString()
             competitionItem.setOnClickListener {
                 tournamentListener?.onItemClicked(it,tournament)
+            }
+
+            if(tournament.host == GlobalConstant.user){
+
             }
         }
     }

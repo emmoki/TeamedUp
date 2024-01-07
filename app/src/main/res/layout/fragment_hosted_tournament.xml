@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home.profile.participatedTournament.ParticipatedTournamentFragment"
     android:orientation="vertical"
     android:background="@color/darker_gray">
 
@@ -12,7 +11,7 @@
         layout="@layout/toolbar_2_item_layout"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_tournament_list"
+        android:id="@+id/rv_hosted_tournament_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"

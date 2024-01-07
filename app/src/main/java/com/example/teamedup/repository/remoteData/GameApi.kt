@@ -4,14 +4,10 @@ import com.example.teamedup.repository.model.*
 import com.example.teamedup.repository.model.format.*
 import retrofit2.Response
 import retrofit2.http.Body
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
-import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface GameApi {
 
@@ -44,7 +40,7 @@ interface GameApi {
         @Header("Authorization") token : String,
         @Path("game_id") gameID : String,
         @Path("tournament_id") tournamentID : String,
-        @Body team : Team
+        @Body createdTeam : CreatedTeam
     ): Response<JoinTournamentFormat>
     @POST("/games/{game_id}/tournaments")
     suspend fun createTournament(

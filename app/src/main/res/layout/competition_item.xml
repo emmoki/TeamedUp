@@ -182,7 +182,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Joined"
+            android:text="Check more info"
             android:textColor="@color/white"
             android:fontFamily="@font/poppins_medium"
             android:textSize="10sp"

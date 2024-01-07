@@ -1,8 +1,6 @@
 package com.example.teamedup.repository.model
 
-import android.app.Notification.BigPictureStyle
 import com.google.gson.annotations.SerializedName
-import java.io.Serial
 
 data class User(
     @SerializedName("id")
@@ -27,5 +25,8 @@ data class User(
     val phoneNum : String,
 
     @SerializedName("hostedTournament")
-    val hostedTournament : List<Tournament>
+    val hostedTournament : List<Tournament>,
+
+    @SerializedName("team")
+    val teamList : List<Team>
 )

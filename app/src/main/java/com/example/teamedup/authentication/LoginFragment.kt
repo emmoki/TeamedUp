@@ -82,6 +82,7 @@ class LoginFragment : Fragment() {
                 val token = response.body()!!
                 Log.d(TAG, "postData: $token")
                 saveDataInDevice(token.access_token!!)
+                GlobalConstant.user = token.data
                 GlobalConstant.ATHENTICATION_TOKEN = "Bearer ${token.access_token}"
                 findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
             }else{

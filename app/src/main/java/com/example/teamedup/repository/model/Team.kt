@@ -1,11 +1,8 @@
 package com.example.teamedup.repository.model
 
-import com.google.gson.annotations.SerializedName
-
 data class Team(
-    @SerializedName("name")
-    val name : String,
-
-    @SerializedName("users")
-    val users : List<String>
+    val id : String?,
+    val rank : Int?,
+    val tournament: Tournament,
+    val users : List<User>
 )

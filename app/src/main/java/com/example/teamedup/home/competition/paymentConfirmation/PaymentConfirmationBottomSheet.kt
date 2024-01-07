@@ -11,11 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.teamedup.databinding.BottomSheetDialogPaymentConfirmationBottomSheetBinding
 import com.example.teamedup.home.competition.createTeam.CreateTeamViewModel
 import com.example.teamedup.home.competition.successPayDialog.SuccessPayDialog
-import com.example.teamedup.home.forum.createForum.CreateForumViewModel
-import com.example.teamedup.home.forum.createForum.SuccessCreateDialog
-import com.example.teamedup.repository.model.Forum
-import com.example.teamedup.repository.model.Team
-import com.example.teamedup.repository.model.User
+import com.example.teamedup.repository.model.CreatedTeam
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
 import com.example.teamedup.util.ErrorUtils
 import com.example.teamedup.util.GlobalConstant
@@ -25,7 +21,7 @@ import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
 
-class PaymentConfirmationBottomSheet(private val gameID: String, private val tournamentID : String, private val team: Team) : BottomSheetDialogFragment() {
+class PaymentConfirmationBottomSheet(private val gameID: String, private val tournamentID : String, private val createdTeam: CreatedTeam) : BottomSheetDialogFragment() {
     lateinit var _binding : BottomSheetDialogPaymentConfirmationBottomSheetBinding
     private val binding get() = _binding
     private val viewModel : CreateTeamViewModel by viewModels()
@@ -43,16 +39,16 @@ class PaymentConfirmationBottomSheet(private val gameID: String, private val tou
         super.onViewCreated(view, savedInstanceState)
         with(binding){
             btnConfirm.setOnClickListener {
-                postData(gameID, tournamentID, team)
+                postData(gameID, tournamentID, createdTeam)
             }
         }
     }
 
-    private fun postData(gameID : String,tournamentID : String, team: Team){
+    private fun postData(gameID : String, tournamentID : String, createdTeam: CreatedTeam){
         lifecycleScope.launch {
             val response = try {
-                Log.d(TAG, "postData: $team")
-                RetrofitInstances.api.joinTournament(GlobalConstant.ATHENTICATION_TOKEN,gameID, tournamentID, team)
+                Log.d(TAG, "postData: $createdTeam")
+                RetrofitInstances.api.joinTournament(GlobalConstant.ATHENTICATION_TOKEN,gameID, tournamentID, createdTeam)
             } catch (e : IOException){
                 Log.d(TAG, "$e")
                 return@launch

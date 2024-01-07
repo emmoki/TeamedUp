@@ -1,6 +1,5 @@
 package com.example.teamedup.repository.model.format
 
-import com.example.teamedup.repository.model.Team
 import com.example.teamedup.repository.model.Tournament
 import com.example.teamedup.repository.model.User
 

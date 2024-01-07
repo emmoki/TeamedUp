@@ -14,7 +14,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.teamedup.databinding.FragmentCreateTeamBinding
 import com.example.teamedup.home.competition.paymentConfirmation.PaymentConfirmationBottomSheet
-import com.example.teamedup.repository.model.Team
+import com.example.teamedup.repository.model.CreatedTeam
 import com.example.teamedup.repository.model.User
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
 import com.example.teamedup.util.GlobalConstant
@@ -86,7 +86,7 @@ class CreateTeamFragment : Fragment(), UserRecyclerViewClickListener,
                 tvCreateGameMemberRequirement.text = "$it / ${createTournamentFragmentArgs.memberMax}"
             }
             toolbarCreateTeam.btnCreate.setOnClickListener {
-                PaymentConfirmationBottomSheet(createTournamentFragmentArgs.gameID!!, createTournamentFragmentArgs.tournamentID!!, Team(etTeamName.text.toString(), viewModel.getAllMemberName(memberNameAdapter.memberList))).show(requireActivity().supportFragmentManager, "PaymentConfirmationTag")
+                PaymentConfirmationBottomSheet(createTournamentFragmentArgs.gameID!!, createTournamentFragmentArgs.tournamentID!!, CreatedTeam(etTeamName.text.toString(), viewModel.getAllMemberName(memberNameAdapter.memberList))).show(requireActivity().supportFragmentManager, "PaymentConfirmationTag")
             }
         }
     }
