@@ -142,12 +142,16 @@ class TournamentDetailFragment : Fragment() {
     }
 
     private fun sessionManager(user: User){
-        Log.d(TAG, "sessionManager: ${viewmodel.tournament.teams}")
+        Log.d(TAG, "sessionManager: ${viewmodel.tournament}")
         if(viewmodel.tournament.host?.id == user.id){
+            Log.d(TAG, "Tournament Host Id: ${viewmodel.tournament.host?.id}")
+            Log.d(TAG, "User Id: ${user.id}")
             binding.btnTournamentJoin.visibility = View.GONE
             binding.llCompleteCompetition.visibility = View.VISIBLE
         }
-        if(viewmodel.tournament.teams.isNullOrEmpty()){ } else {
+        if(viewmodel.tournament.userTeam == null){
+            binding.btnTournamentJoin.visibility = View.VISIBLE
+        } else {
             binding.btnTournamentJoin.visibility = View.GONE
             binding.clMemberIcon.visibility = View.VISIBLE
             setUpMemberIconRecyclerView(GlobalConstant.user)

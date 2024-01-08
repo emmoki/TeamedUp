@@ -36,6 +36,9 @@ data class Tournament(
     @SerializedName("tier")
     val tier : String,
 
+    @SerializedName("userTeam")
+    val userTeam : Team?,
+
     @SerializedName("host")
     val host : User?,
 

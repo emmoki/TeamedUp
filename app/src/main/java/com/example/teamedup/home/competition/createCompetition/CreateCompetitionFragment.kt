@@ -138,6 +138,7 @@ class CreateCompetitionFragment : Fragment() {
                         prize = etTournamentPrizePool.text.toString().toInt(),
                         fee = etTournamentFee.text.toString().toInt(),
                         tier = tournamentTier.toString(),
+                        userTeam = null,
                         host = null,
                         icon = uploadedImage1,
                         teams = null,
