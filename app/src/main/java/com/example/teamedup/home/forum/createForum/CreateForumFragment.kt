@@ -23,6 +23,7 @@ import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstance
 import com.example.teamedup.util.GlobalConstant
 import com.example.teamedup.util.PictureRelatedTools
 import com.example.teamedup.util.TAG
+import com.example.teamedup.util.ViewUtils
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -66,6 +67,8 @@ class CreateForumFragment : Fragment() {
     private fun setupCreateForumView(){
         binding.apply {
             toolbar.btnCreate.setOnClickListener {
+                loading.visibility = View.VISIBLE
+                ViewUtils.hideKeyboard(requireActivity())
                 PictureRelatedTools.uploadImage1(viewModel.uploadedPicture)
                 lifecycleScope.launch {
                     if(viewModel.uploadedPicture != null){
@@ -139,6 +142,7 @@ class CreateForumFragment : Fragment() {
             }else{
                 Log.d(TAG, "Response no successful")
                 Log.d(TAG, "postData: ${response.message()}")
+                binding.loading.visibility = View.GONE
             }
         }
     }
