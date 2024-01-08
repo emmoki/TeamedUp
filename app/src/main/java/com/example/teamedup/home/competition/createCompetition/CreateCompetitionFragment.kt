@@ -29,6 +29,7 @@ import com.example.teamedup.util.PictureRelatedTools.uploadImage2
 import com.example.teamedup.util.PictureRelatedTools.uploadedImage1
 import com.example.teamedup.util.PictureRelatedTools.uploadedImage2
 import com.example.teamedup.util.TAG
+import com.example.teamedup.util.ViewUtils
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -117,6 +118,8 @@ class CreateCompetitionFragment : Fragment() {
     private fun setupConfirmButton(){
         binding.apply {
             toolbar.btnCreate.setOnClickListener {
+                loading.visibility = View.VISIBLE
+                ViewUtils.hideKeyboard(requireActivity())
                 uploadImage1(viewModel.iconUploadedImage)
                 uploadImage2(viewModel.thumbnailUploadedImage)
                 lifecycleScope.launch {
@@ -235,6 +238,7 @@ class CreateCompetitionFragment : Fragment() {
             }else{
                 Log.d(TAG, "Response no successful")
                 Log.d(TAG, "postData: ${response.body()}")
+                binding.loading.visibility = View.GONE
             }
         }
     }
