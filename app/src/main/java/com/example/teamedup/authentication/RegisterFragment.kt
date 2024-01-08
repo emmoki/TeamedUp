@@ -6,10 +6,11 @@ import android.graphics.ImageDecoder
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -26,7 +27,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
-import kotlin.collections.ArrayList
 
 class RegisterFragment : Fragment() {
     private lateinit var _binding : FragmentRegisterBinding
@@ -86,6 +86,8 @@ class RegisterFragment : Fragment() {
     private fun setupRegisteringUser(){
         binding.apply {
             btnConfirm.setOnClickListener {
+                ViewUtils.hideKeyboard(requireActivity())
+                binding.loading.visibility = View.VISIBLE
                 uploadImage1(viewModel.uploadedImage)
                 lifecycleScope.launch {
                     if(viewModel.uploadedImage != null){
@@ -105,10 +107,12 @@ class RegisterFragment : Fragment() {
                         true -> {
                             errorMessageList.rvErrorList.visibility = View.GONE
                             postData(registerUser)
+                            loading.visibility = View.GONE
                         }
                         false -> {
                             errorMessageList.rvErrorList.visibility = View.VISIBLE
                             errorAdapter.setFilteredGameList(errorMassageList)
+                            loading.visibility = View.GONE
                         }
                     }
                 }
