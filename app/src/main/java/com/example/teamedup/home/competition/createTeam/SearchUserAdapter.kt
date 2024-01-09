@@ -48,9 +48,12 @@ class SearchUserAdapter : RecyclerView.Adapter<SearchUserAdapter.SearchUserViewH
     override fun onBindViewHolder(holder: SearchUserViewHolder, position: Int) {
         holder.binding.apply {
             val user = users[position]
-            Picasso.with(context)
-                .load(user.picture)
-                .into(ivUserLogo)
+            if(user.picture.isNullOrBlank()){ }else{
+                Picasso.with(context)
+                    .load(user.picture)
+                    .into(ivUserLogo)
+            }
+
             tvUserName.text = user.name
             itemUser.setOnClickListener {
                 searchedUserListener?.onItemClicked(it, user )

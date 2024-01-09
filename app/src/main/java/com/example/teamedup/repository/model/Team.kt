@@ -15,6 +15,12 @@ data class Team(
     @SerializedName("tournament")
     val tournament: Tournament,
 
+    @SerializedName("accountNo")
+    val accountNo: String,
+
+    @SerializedName("paymentProof")
+    val paymentProof: String,
+
     @SerializedName("users")
     val users : List<User>
 )

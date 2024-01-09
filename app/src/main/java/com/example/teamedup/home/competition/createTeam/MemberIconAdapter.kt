@@ -36,9 +36,11 @@ class MemberIconAdapter : RecyclerView.Adapter<MemberIconAdapter.MemberIconViewH
     override fun onBindViewHolder(holder: MemberIconAdapter.MemberIconViewHolder, position: Int) {
         val memberIcon = memberList[position]
         holder.binding.apply {
-            Picasso.with(context)
-                .load(memberIcon.picture)
-                .into(ivUserLogo)
+            if(memberIcon.picture.isNullOrBlank()){ }else{
+                Picasso.with(context)
+                    .load(memberIcon.picture)
+                    .into(ivUserLogo)
+            }
         }
     }
 

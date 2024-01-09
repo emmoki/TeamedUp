@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".home.competition.paymentConfirmation.PaymentConfirmationBottomSheet"
     android:orientation="vertical"
     android:background="@color/gray"
@@ -29,10 +30,40 @@
         android:text="Proof Of Payment*"
         android:textColor="@color/white"
         android:fontFamily="@font/poppins_medium"/>
-
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/iv_payment_proof"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:maxHeight="100dp"
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="5dp"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:visibility="gone"
+        android:id="@+id/btn_edit_payment_proof"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_purple">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_create"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/ic_no_body_arrow_right"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <LinearLayout
         android:layout_marginTop="5dp"
-        android:id="@+id/btn_proof_of_payment"
+        android:id="@+id/btn_payment_proof"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginBottom="20dp"

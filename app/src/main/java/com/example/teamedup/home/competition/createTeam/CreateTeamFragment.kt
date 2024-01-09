@@ -9,18 +9,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.teamedup.databinding.FragmentCreateTeamBinding
 import com.example.teamedup.home.competition.paymentConfirmation.PaymentConfirmationBottomSheet
+import com.example.teamedup.home.competition.successPayDialog.SuccessPayDialog
 import com.example.teamedup.repository.model.CreatedTeam
 import com.example.teamedup.repository.model.User
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
-import com.example.teamedup.util.GlobalConstant
-import com.example.teamedup.util.TAG
-import com.example.teamedup.util.UserDeleteRecyclerViewClickListener
-import com.example.teamedup.util.UserRecyclerViewClickListener
+import com.example.teamedup.util.*
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
@@ -37,6 +38,7 @@ class CreateTeamFragment : Fragment(), UserRecyclerViewClickListener,
     private lateinit var searchedUser : List<User>
     private val viewModel : CreateTeamViewModel by viewModels()
     private val createTournamentFragmentArgs : CreateTeamFragmentArgs by navArgs()
+    private lateinit var createdTeam : CreatedTeam
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,6 +56,7 @@ class CreateTeamFragment : Fragment(), UserRecyclerViewClickListener,
         setUpMemberNameRecyclerView()
         setUpOtherView()
         setupUserSearchRecyclerView()
+        submitButtonOnPaymentProofClicked()
     }
 
     private fun setUpMemberIconRecyclerView(){
@@ -86,14 +89,17 @@ class CreateTeamFragment : Fragment(), UserRecyclerViewClickListener,
                 tvCreateGameMemberRequirement.text = "$it / ${createTournamentFragmentArgs.memberMax}"
             }
             toolbarCreateTeam.btnCreate.setOnClickListener {
-                PaymentConfirmationBottomSheet(createTournamentFragmentArgs.gameID!!, createTournamentFragmentArgs.tournamentID!!, CreatedTeam(etTeamName.text.toString(), viewModel.getAllMemberName(memberNameAdapter.memberList))).show(requireActivity().supportFragmentManager, "PaymentConfirmationTag")
+                viewModel.teamName = etTeamName.text.toString()
+                viewModel.teamUsers = viewModel.getAllMemberName(memberNameAdapter.memberList)
+                viewModel.accountNo = etTeamBankAccount.text.toString()
+                PaymentConfirmationBottomSheet().show(this@CreateTeamFragment.childFragmentManager, "PaymentConfirmationTag")
             }
         }
     }
 
     private fun getData(){
         lifecycleScope.launch {
-//            binding.pbGameList.isVisible = true
+            binding.loading.visibility = View.VISIBLE
             val response = try {
                 RetrofitInstances.api.getUserList(GlobalConstant.ATHENTICATION_TOKEN)
             } catch (e : IOException){
@@ -112,7 +118,7 @@ class CreateTeamFragment : Fragment(), UserRecyclerViewClickListener,
             }else{
                 Log.d("HomeFragment", "Response no successful")
             }
-//            binding.pbGameList.isVisible = false
+            binding.loading.visibility = View.GONE
         }
     }
 
@@ -169,5 +175,60 @@ class CreateTeamFragment : Fragment(), UserRecyclerViewClickListener,
         viewModel.setCounterHandler(viewModel.memberCounter)
         memberIconAdapter.setDeleteMemberList(user)
         memberNameAdapter.setDeleteMemberList(user)
+    }
+
+    private fun submitButtonOnPaymentProofClicked(){
+        viewModel.submitButtonClicked.observe(viewLifecycleOwner){
+            when(it){
+                "notClicked" -> {}
+                "clicked" -> {
+                    binding.loading.visibility = View.VISIBLE
+                    PictureRelatedTools.uploadImage1(viewModel.uploadedPicture)
+                    lifecycleScope.launch {
+                        if(viewModel.uploadedPicture != null){
+                            delay(5000)
+                        }
+                        viewModel.proofPayment = PictureRelatedTools.uploadedImage1
+                        Log.d(TAG, "submitButtonOnPaymentProofClicked: ${viewModel.proofPayment}")
+                        createdTeam = CreatedTeam(
+                            viewModel.teamName,
+                            viewModel.teamUsers,
+                            viewModel.proofPayment,
+                            viewModel.accountNo
+                        )
+                        Log.d(TAG, "submitButtonOnPaymentProofClicked: $createdTeam")
+                        postData(createTournamentFragmentArgs.gameID!!, createTournamentFragmentArgs.tournamentID!!, createdTeam)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun postData(gameID : String, tournamentID : String, createdTeam: CreatedTeam){
+        lifecycleScope.launch {
+            val response = try {
+                Log.d(TAG, "postData: $createdTeam")
+                RetrofitInstances.api.joinTournament(GlobalConstant.ATHENTICATION_TOKEN,gameID, tournamentID, createdTeam)
+            } catch (e : IOException){
+                Log.d(TAG, "$e")
+                return@launch
+            } catch (e : HttpException){
+                Log.d(TAG, "Internal Error")
+                return@launch
+            }
+            if(response.isSuccessful && response.body() != null){
+                binding.loading.visibility = View.GONE
+                SuccessPayDialog().show(requireActivity().supportFragmentManager, "SuccessPayDialogTag")
+                Log.d(TAG, "PostData: ${response.body()!!.data}")
+                findNavController().popBackStack()
+            }else{
+                Log.d(TAG, "postData: $response")
+                val errorResponse = ErrorUtils.convertApiToGson(response.errorBody()!!.string())
+//                val errorMessageFromApi = ArrayList<String>()
+                Log.d(TAG, "postData: ${errorResponse.message}")
+//                errorMessageFromApi.add(errorResponse.message)
+//                errorAdapter.setFilteredGameList(errorMessageFromApi)
+            }
+        }
     }
 }

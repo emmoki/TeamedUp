@@ -60,10 +60,6 @@ class CompetitionAdapter : RecyclerView.Adapter<CompetitionAdapter.CompetitionVi
             competitionItem.setOnClickListener {
                 tournamentListener?.onItemClicked(it,tournament)
             }
-
-            if(tournament.host == GlobalConstant.user){
-
-            }
         }
     }
 }

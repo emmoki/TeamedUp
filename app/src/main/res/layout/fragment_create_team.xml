@@ -1,159 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".home.competition.createTeam.CreateTeamFragment"
-    android:orientation="vertical"
-    android:background="@color/darker_gray">
-
-    <include
-        android:id="@+id/toolbar_create_team"
-        layout="@layout/toolbar_2_item_layout"
-        />
-
+    tools:context=".home.competition.createTeam.CreateTeamFragment">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginHorizontal="12dp">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Team's name"
-                android:textSize="12dp"
-                android:fontFamily="@font/poppins_regular"
-                android:textColor="@color/white"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="*"
-                android:fontFamily="@font/poppins_regular"
-                android:textColor="@color/red"/>
-        </LinearLayout>
-        <EditText
-            android:id="@+id/et_team_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/white"
-            android:layout_marginBottom="10dp"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginHorizontal="12dp">
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/member_requirement"/>
+        android:background="@color/darker_gray">
+        <include
+            android:id="@+id/toolbar_create_team"
+            layout="@layout/toolbar_2_item_layout"
+            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginStart="10dp">
-            <TextView
+            android:layout_marginHorizontal="12dp">
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Member Requirement"
-                android:fontFamily="@font/poppins_medium"
-                android:textColor="@color/purple_200"
-                android:textSize="9dp"
-                android:layout_marginBottom="-3dp"/>
-            <TextView
-                android:id="@+id/tv_create_game_member_requirement"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Team's name"
+                    android:textSize="12dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/white"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/red"/>
+            </LinearLayout>
+            <EditText
+                android:id="@+id/et_team_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_bold"
-                android:text="5/10 Member"
                 android:textColor="@color/white"
-                android:textSize="15dp" />
+                android:backgroundTint="@color/white"
+                android:layout_marginBottom="10dp"/>
         </LinearLayout>
-    </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_member_icon"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="12dp"
-        android:layout_marginVertical="15dp"
-        android:orientation="horizontal"
-        android:scrollbars="horizontal"
-        tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/member_list_icon_item"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_member_name"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginHorizontal="12dp"
-        android:orientation="horizontal"
-        android:scrollbars="horizontal"
-        tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/member_list_name_item"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginHorizontal="12dp">
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_medium"
-            android:text="Search Member"
-            android:textColor="@color/white"
-            android:textSize="15dp" />
-
-        <LinearLayout
-            android:id="@+id/ll_search_box"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@drawable/dark_gray_square_box"
-            android:gravity="center"
-            android:paddingHorizontal="5dp"
-            app:circularflow_defaultRadius="30dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/ll_claiamble_prize"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/btn_search_user"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="12dp">
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_search" />
-
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Team's Bank Account"
+                    android:textSize="12dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/white"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/red"/>
+            </LinearLayout>
             <EditText
-                android:id="@+id/et_search"
-                style="@style/EditText"
+                android:id="@+id/et_team_bank_account"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/transparent"
-                android:hint="Search here.."
                 android:textColor="@color/white"
-                android:textColorHint="@color/light_gray" />
+                android:inputType="number"
+                android:backgroundTint="@color/white"
+                android:layout_marginBottom="10dp"/>
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="12dp">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/member_requirement"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Member Requirement"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textColor="@color/purple_200"
+                    android:textSize="9dp"
+                    android:layout_marginBottom="-3dp"/>
+                <TextView
+                    android:id="@+id/tv_create_game_member_requirement"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="5/10 Member"
+                    android:textColor="@color/white"
+                    android:textSize="15dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_member_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginVertical="15dp"
+            android:orientation="horizontal"
+            android:scrollbars="horizontal"
+            tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/member_list_icon_item"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_member_name"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginHorizontal="12dp"
+            android:orientation="horizontal"
+            android:scrollbars="horizontal"
+            tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/member_list_name_item"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="12dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Search Member"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
+
+            <LinearLayout
+                android:id="@+id/ll_search_box"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/dark_gray_square_box"
+                android:gravity="center"
+                android:paddingHorizontal="5dp"
+                app:circularflow_defaultRadius="30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/ll_claiamble_prize"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btn_search_user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_search" />
+
+                <EditText
+                    android:id="@+id/et_search"
+                    style="@style/EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/transparent"
+                    android:hint="Search here.."
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/light_gray" />
+            </LinearLayout>
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_searched_user"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginVertical="15dp"
+            tools:listitem="@layout/user_list_item"
+            />
     </LinearLayout>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_searched_user"
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginHorizontal="12dp"
-        android:layout_marginVertical="15dp"
-        tools:listitem="@layout/user_list_item"
-        />
-</LinearLayout>
+        android:background="@color/black_transparent"
+        android:gravity="center">
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,5 +7,11 @@ data class CreatedTeam(
     val name : String,
 
     @SerializedName("users")
-    val users : List<String>
+    val users : List<String>,
+
+    @SerializedName("paymentProof")
+    val paymentProof : String,
+
+    @SerializedName("accountNo")
+    val accountNo : String
 )
