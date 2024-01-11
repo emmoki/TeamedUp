@@ -173,7 +173,11 @@
     <fragment
         android:id="@+id/hostedTournamentFragment"
         android:name="com.example.teamedup.home.profile.participatedTournament.HostedTournamentFragment"
-        android:label="HostedTournamentFragment" />
+        android:label="HostedTournamentFragment" >
+        <action
+            android:id="@+id/action_hostedTournamentFragment_to_tournamentDetailFragment"
+            app:destination="@id/tournamentDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/participatedTournamentFragment"
         android:name="com.example.teamedup.home.profile.participatedTournament.ParticipatedTournamentFragment"

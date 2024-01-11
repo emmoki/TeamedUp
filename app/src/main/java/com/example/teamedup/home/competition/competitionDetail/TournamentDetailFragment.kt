@@ -89,7 +89,7 @@ class TournamentDetailFragment : Fragment() {
             tvTournamentSummaryType.text = viewmodel.tournament.type
             tvTournamentSummaryScenes.text = viewmodel.tournament.tier
             tvTournamentSummaryPrizepool.text = moneySuffix(viewmodel.tournament.prize.toInt())
-            tvTournamentSummaryQuota.text = viewmodel.tournament.totalParticipant.toString()
+            tvTournamentSummaryQuota.text = "${viewmodel.tournament.totalParticipant/viewmodel.tournament.maxPlayerInTeam}/${viewmodel.tournament.maxParticipant}"
         }
     }
 
@@ -133,7 +133,7 @@ class TournamentDetailFragment : Fragment() {
             }
             tvTournamentMoreInformationLocation.text = viewmodel.tournament.location
             tvTournamentMoreInformationScene.text = viewmodel.tournament.tier
-            tvTournamentMoreInformationQuota.text = viewmodel.tournament.totalParticipant.toString()
+            tvTournamentMoreInformationQuota.text = "${viewmodel.tournament.totalParticipant/viewmodel.tournament.maxPlayerInTeam}/${viewmodel.tournament.maxParticipant}"
             tvTournamentMoreInformationEntryPrice.text = moneySuffix(viewmodel.tournament.fee.toInt())
             tvTournamentMoreInformationMemberRequirement.text = viewmodel.tournament.maxPlayerInTeam.toString()
             tvTournamentMoreInformationType.text = viewmodel.tournament.type

@@ -54,7 +54,7 @@ class CompetitionAdapter : RecyclerView.Adapter<CompetitionAdapter.CompetitionVi
             }
             tvCompetitionName.text = tournament.name
             tvCompetitionGame.text = tournament.game?.name
-            tvGroupJoined.text = tournament.totalParticipant.toString()
+            tvGroupJoined.text = (tournament.totalParticipant/tournament.maxPlayerInTeam).toString()
             tvGroupMax.text = tournament.maxParticipant.toString()
             tvCompetitionPrizePool.text = tournament.prize.toString()
             competitionItem.setOnClickListener {

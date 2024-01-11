@@ -7,10 +7,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.teamedup.databinding.FragmentHostedTournamentBinding
+import com.example.teamedup.home.HomeFragmentDirections
+import com.example.teamedup.home.SharedViewModel
 import com.example.teamedup.home.competition.CompetitionAdapter
 import com.example.teamedup.repository.model.Tournament
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
@@ -26,6 +29,7 @@ class HostedTournamentFragment : Fragment(), TournamentRecyclerViewClickListener
     private lateinit var _binding : FragmentHostedTournamentBinding
     private val binding get() = _binding
     private lateinit var hostedTournamentAdapter : CompetitionAdapter
+    private val sharedViewModel : SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -77,7 +81,8 @@ class HostedTournamentFragment : Fragment(), TournamentRecyclerViewClickListener
     }
 
     override fun onItemClicked(view: View, tournament: Tournament) {
-        Log.d(TAG, "onItemClicked: ${tournament.id}")
+        val direction = HostedTournamentFragmentDirections.actionHostedTournamentFragmentToTournamentDetailFragment(tournament.game!!.id, tournament.id!!)
+        findNavController().navigate(direction)
     }
 
     private fun setupToolbar(){
