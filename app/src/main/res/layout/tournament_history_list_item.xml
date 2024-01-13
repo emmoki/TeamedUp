@@ -7,6 +7,7 @@
     android:gravity="center_vertical"
     android:layout_marginBottom="5dp">
     <TextView
+        android:id="@+id/tv_tournament_ranking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
@@ -20,6 +21,7 @@
         android:layout_height="match_parent"
         android:background="@color/white"/>
     <TextView
+        android:id="@+id/tv_tournament_tier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
@@ -38,6 +40,7 @@
         android:paddingHorizontal="5dp"
         >
         <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_tournament_game_icon"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:textColor="@color/white"
@@ -45,10 +48,11 @@
             android:scaleType="centerCrop"
             android:src="@drawable/dota2"/>
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_tournament_name"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="5dp"
             android:fontFamily="@font/poppins_regular"
             android:textSize="10dp"
             android:text="MDL Mobile Legends Season 23"/>
@@ -59,6 +63,7 @@
         android:layout_height="match_parent"
         android:background="@color/white"/>
     <TextView
+        android:id="@+id/tv_tournament_date"
         android:fontFamily="@font/poppins_regular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

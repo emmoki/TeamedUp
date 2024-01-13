@@ -48,6 +48,9 @@
         <action
             android:id="@+id/action_tournamentDetailFragment_to_createTeamFragment"
             app:destination="@id/createTeamFragment" />
+        <action
+            android:id="@+id/action_tournamentDetailFragment_to_hostTournamentLogFragment"
+            app:destination="@id/hostTournamentLogFragment" />
     </fragment>
     <fragment
         android:id="@+id/createTeamFragment"
@@ -182,5 +185,27 @@
         android:id="@+id/participatedTournamentFragment"
         android:name="com.example.teamedup.home.profile.participatedTournament.ParticipatedTournamentFragment"
         android:label="fragment_participated_tournament"
-        tools:layout="@layout/fragment_participated_tournament" />
+        tools:layout="@layout/fragment_participated_tournament" >
+        <action
+            android:id="@+id/action_participatedTournamentFragment_to_tournamentDetailFragment"
+            app:destination="@id/tournamentDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/hostTournamentLogFragment"
+        android:name="com.example.teamedup.home.competitionLog.HostTournamentLogFragment"
+        android:label="fragment_host_tournament_log"
+        tools:layout="@layout/fragment_host_tournament_log" >
+        <argument
+            android:name="participatedTeamList"
+            app:argType="string[]" />
+        <argument
+            android:name="gameID"
+            app:argType="string" />
+        <argument
+            android:name="tournamentID"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_hostTournamentLogFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

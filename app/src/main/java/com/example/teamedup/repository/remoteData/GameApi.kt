@@ -6,6 +6,7 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Path
 
@@ -96,4 +97,12 @@ interface GameApi {
     suspend fun getUser(
         @Header("Authorization") token : String,
     ): Response<FormatResponseProfile>
+
+    @PATCH("/games/{game_id}/tournaments/{tournament_id}/rank")
+    suspend fun updateRank(
+        @Header("Authorization") token : String,
+        @Path("game_id") gameID : String,
+        @Path("tournament_id") tournamentID : String,
+        @Body updateRank: UpdateRank
+    ): Response<FormatInputRank>
 }

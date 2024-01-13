@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.example.teamedup.R
 import com.example.teamedup.databinding.FragmentProfileBinding
 import com.example.teamedup.repository.model.User
@@ -23,7 +25,7 @@ class ProfileFragment : Fragment() {
     private lateinit var _binding : FragmentProfileBinding
     private val binding get() = _binding
     private lateinit var user : User
-//    private lateinit var userTournamentHistoryAdapter : UserTournamentHistoryAdapter
+    private lateinit var userTournamentHistoryAdapter : UserTournamentHistoryAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,6 +36,7 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupHistoryTournament()
         getData()
         setupToolbar()
     }
@@ -74,12 +77,25 @@ class ProfileFragment : Fragment() {
             }
             if(response.isSuccessful && response.body() != null){
                 user = response.body()!!.data
+                userTournamentHistoryAdapter.teams = response.body()!!.data.teamList
                 Log.d(TAG, "getData: $user")
                 setupOtherView()
             }else{
                 Log.d("CompetitionDiscover", "Response no successful")
             }
 //            binding.pbCompetitionList.isVisible = false
+        }
+    }
+
+    private fun setupHistoryTournament(){
+        binding.rvTournamentHistoryList.apply {
+            userTournamentHistoryAdapter = UserTournamentHistoryAdapter()
+            adapter = userTournamentHistoryAdapter
+            layoutManager = LinearLayoutManager(
+                requireContext(),
+                LinearLayoutManager.VERTICAL,
+                false
+            )
         }
     }
 }

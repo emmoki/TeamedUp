@@ -27,6 +27,8 @@ import com.squareup.picasso.Picasso
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
+import java.util.*
+import kotlin.collections.ArrayList
 
 class TournamentDetailFragment : Fragment() {
 
@@ -81,6 +83,7 @@ class TournamentDetailFragment : Fragment() {
         setupSummaryTournamentInfo()
         setupDetailTournamentInfo()
         setupTournamentGameView()
+        setupCompleteCompetition()
     }
 
     private fun setupSummaryTournamentInfo(){
@@ -172,6 +175,21 @@ class TournamentDetailFragment : Fragment() {
                         memberIconAdapter.setSelectedMemberList(user)
                     }
                 }
+            }
+        }
+    }
+
+    private fun setupCompleteCompetition(){
+        binding.apply {
+            btnCompleteCompetition.setOnClickListener {
+                val teamNameList = ArrayList<String>()
+                val teamArray = arrayOfNulls<String>(teamNameList.size)
+                for(teamsName in viewmodel.tournament.teams!!){
+                    teamNameList.add(teamsName.name)
+                }
+                val array = teamNameList.toArray(teamArray)
+                val direction = TournamentDetailFragmentDirections.actionTournamentDetailFragmentToHostTournamentLogFragment(array, viewmodel.tournament.game!!.id, viewmodel.tournament.id!!)
+                findNavController().navigate(direction)
             }
         }
     }

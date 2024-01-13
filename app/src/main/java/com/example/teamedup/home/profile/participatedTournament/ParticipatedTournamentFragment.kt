@@ -84,6 +84,8 @@ class ParticipatedTournamentFragment : Fragment(), TournamentRecyclerViewClickLi
 
     override fun onItemClicked(view: View, tournament: Tournament) {
         Log.d(TAG, "onItemClicked: ${tournament.id}")
+        val direction = ParticipatedTournamentFragmentDirections.actionParticipatedTournamentFragmentToTournamentDetailFragment(tournament.game!!.id, tournament.id!!)
+        findNavController().navigate(direction)
     }
 
     private fun setupToolbar(){
