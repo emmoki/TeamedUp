@@ -28,7 +28,7 @@ import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
 
-class PaymentConfirmationBottomSheet() : BottomSheetDialogFragment() {
+class PaymentConfirmationBottomSheet : BottomSheetDialogFragment() {
     lateinit var _binding : BottomSheetDialogPaymentConfirmationBottomSheetBinding
     private val binding get() = _binding
     private val createTeamSharedViewModel : CreateTeamViewModel by viewModels(ownerProducer = {requireParentFragment()})
@@ -49,51 +49,9 @@ class PaymentConfirmationBottomSheet() : BottomSheetDialogFragment() {
         setupConfirmTeam()
     }
 
-    private fun postData(gameID : String, tournamentID : String, createdTeam: CreatedTeam){
-        lifecycleScope.launch {
-            val response = try {
-                Log.d(TAG, "postData: $createdTeam")
-                RetrofitInstances.api.joinTournament(GlobalConstant.ATHENTICATION_TOKEN,gameID, tournamentID, createdTeam)
-            } catch (e : IOException){
-                Log.d(TAG, "$e")
-                return@launch
-            } catch (e : HttpException){
-                Log.d(TAG, "Internal Error")
-                return@launch
-            }
-            if(response.isSuccessful && response.body() != null){
-//                SuccessCreateDialog().show(parentFragmentManager, "SuccessCreateDialog")
-                Log.d(TAG, "PostData: ${response.body()!!.data}")
-                findNavController().popBackStack()
-                dismiss()
-            }else{
-                Log.d(TAG, "postData: $response")
-                val errorResponse = ErrorUtils.convertApiToGson(response.errorBody()!!.string())
-//                val errorMessageFromApi = ArrayList<String>()
-                Log.d(TAG, "postData: ${errorResponse.message}")
-//                errorMessageFromApi.add(errorResponse.message)
-//                errorAdapter.setFilteredGameList(errorMessageFromApi)
-            }
-        }
-    }
-
     private fun setupConfirmTeam(){
         binding.apply {
             btnConfirm.setOnClickListener {
-//                PictureRelatedTools.uploadImage1(createTeamSharedViewModel.uploadedPicture)
-//                createTeamSharedViewModel.proofPayment = PictureRelatedTools.uploadedImage1
-//                lifecycleScope.launch {
-//                    if(createTeamSharedViewModel.uploadedPicture != null){
-//                        delay(5000)
-//                    }
-//                    val createdTeam = CreatedTeam(
-//                        createTeamSharedViewModel.teamName,
-//                        createTeamSharedViewModel.teamUsers,
-//                        createTeamSharedViewModel.proofPayment,
-//                        createTeamSharedViewModel.accountNo
-//                    )
-//                    postData(gameID, tournamentID, createdTeam)
-//                }
                 createTeamSharedViewModel.setSubmitButtonClicked("clicked")
                 dismiss()
             }

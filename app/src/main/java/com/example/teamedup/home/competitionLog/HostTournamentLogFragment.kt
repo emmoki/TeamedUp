@@ -44,6 +44,7 @@ class HostTournamentLogFragment : Fragment() {
         setUpParticipatedTeamList()
         setupData()
         postData()
+        setupToolbar() 
     }
 
     private fun setUpParticipatedTeamList(){
@@ -88,6 +89,16 @@ class HostTournamentLogFragment : Fragment() {
 //                        errorAdapter.setFilteredGameList(errorMessageFromApi)
                     }
                 }
+            }
+        }
+    }
+
+    private fun setupToolbar(){
+        binding.apply {
+            toolbar.btnCreate.visibility = View.GONE
+            toolbar.tvToolbarTitle.text = "Back"
+            toolbar.back.setOnClickListener {
+                findNavController().popBackStack()
             }
         }
     }
