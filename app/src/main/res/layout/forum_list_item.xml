@@ -100,6 +100,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp">
         <ImageView
+            android:id="@+id/iv_upVote"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:src="@drawable/ic_thumbs_up"
@@ -112,6 +113,7 @@
             android:text="1.7k"
             android:layout_marginEnd="15dp"/>
         <ImageView
+            android:id="@+id/iv_downVote"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:src="@drawable/ic_thumbs_down"

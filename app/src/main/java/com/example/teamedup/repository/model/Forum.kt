@@ -4,8 +4,8 @@ data class Forum(
     val id: String?,
     val title: String?,
     val content: String,
-    val upVote: Int,
-    val downVote: Int,
+    var upVote: Int,
+    var downVote: Int,
     val user: User?,
     val thumbnail : String?,
     val comments: List<Comment>?

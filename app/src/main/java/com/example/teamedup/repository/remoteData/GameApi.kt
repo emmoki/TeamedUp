@@ -74,6 +74,13 @@ interface GameApi {
         @Path("game_id") gameID : String,
         @Path("forum_id") forumID : String
     ): Response<FormatResponseForum>
+    @PATCH("/games/{game_id}/forums/{forum_id}")
+    suspend fun updateForums(
+        @Header("Authorization") token : String,
+        @Path("game_id") gameID: String,
+        @Path("forum_id") forumID : String,
+        @Body forum : Forum
+    ) : Response<Forum>
 
 
     // Forum Comment
