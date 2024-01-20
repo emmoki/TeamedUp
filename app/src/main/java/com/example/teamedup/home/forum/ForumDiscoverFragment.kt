@@ -76,6 +76,7 @@ class ForumDiscoverFragment : Fragment(), ForumRecyclerViewClickListener {
     private fun setUpForumRecyclerView(){
         binding.rvForumList.apply {
             forumAdapter = ForumAdapter()
+            forumAdapter.gameID = sharedViewModel.game.value!!
             adapter = forumAdapter
             layoutManager = LinearLayoutManager(
                 requireContext(),

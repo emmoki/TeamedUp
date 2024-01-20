@@ -46,7 +46,7 @@ class ForumDetailFragment : Fragment() {
         getCommentData(forumDetailFragmentArgs.gameID, forumDetailFragmentArgs.forumID)
         setUpCommentRecyclerView()
         createCommentBtn()
-        setUpLikeButton()
+        setUpVoteButton()
     }
 
     private fun getForumData(gameID : String, forumID : String){
@@ -100,6 +100,8 @@ class ForumDetailFragment : Fragment() {
     private fun setUpCommentRecyclerView(){
         binding.rvCommentList.apply {
             commentAdapter = CommentItemAdapter()
+            commentAdapter.gameID = forumDetailFragmentArgs.gameID
+            commentAdapter.forumID = forumDetailFragmentArgs.forumID
             adapter = commentAdapter
             layoutManager = LinearLayoutManager(
                 requireContext(),
@@ -141,7 +143,7 @@ class ForumDetailFragment : Fragment() {
         }
     }
 
-    private fun setUpLikeButton(){
+    private fun setUpVoteButton(){
         binding.apply {
             ivUpvote.setOnClickListener {
                 viewModel.forum.upVote++
@@ -161,7 +163,7 @@ class ForumDetailFragment : Fragment() {
             val response = try {
                 Log.d(TAG, "onViewCreated: Game : ${forumDetailFragmentArgs.gameID}")
                 Log.d(TAG, "onViewCreated: Forum : ${forumDetailFragmentArgs.forumID}")
-                val udpateForum = Forum (
+                val updateForum = Forum (
                     title = viewModel.forum.title,
                     content = viewModel.forum.content,
                     thumbnail = viewModel.forum.thumbnail,
@@ -171,7 +173,7 @@ class ForumDetailFragment : Fragment() {
                     comments = null,
                     user = null
                 )
-                RetrofitInstances.api.updateForums(GlobalConstant.ATHENTICATION_TOKEN,gameID, forumID, udpateForum)
+                RetrofitInstances.api.updateForums(GlobalConstant.ATHENTICATION_TOKEN,gameID, forumID, updateForum)
             } catch (e : IOException){
                 Log.d(TAG, "$e")
                 return@launch

@@ -10,13 +10,20 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teamedup.databinding.ForumListItemBinding
 import com.example.teamedup.repository.model.Forum
+import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
 import com.example.teamedup.util.ForumRecyclerViewClickListener
-import com.example.teamedup.util.PictureRelatedTools.convertBase64ToBitmap
+import com.example.teamedup.util.GlobalConstant
 import com.example.teamedup.util.TAG
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.HttpException
+import java.io.IOException
 
 class ForumAdapter : RecyclerView.Adapter<ForumAdapter.ForumViewHolder>() {
     private lateinit var context : Context
+    lateinit var gameID : String
     inner class ForumViewHolder(val binding : ForumListItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     private val diffCallback = object : DiffUtil.ItemCallback<Forum>(){
@@ -67,6 +74,16 @@ class ForumAdapter : RecyclerView.Adapter<ForumAdapter.ForumViewHolder>() {
             tvUpvote.text = forum.upVote.toString()
             tvDownVote.text = forum.downVote.toString()
 
+            ivUpVote.setOnClickListener {
+                forum.upVote++
+                tvUpvote.text = forum.upVote.toString()
+                updateForumData(gameID, forum.id!!, forum)
+            }
+            ivDownVote.setOnClickListener {
+                forum.downVote++
+                tvDownVote.text = forum.downVote.toString()
+                updateForumData(gameID, forum.id!!, forum)
+            }
             forumItem.setOnClickListener {
                 forumListener?.onItemClicked(it, forum)
             }
@@ -75,5 +92,36 @@ class ForumAdapter : RecyclerView.Adapter<ForumAdapter.ForumViewHolder>() {
 
     override fun getItemCount(): Int {
         return forums.size
+    }
+
+    private fun updateForumData(gameID : String, forumID : String, forum : Forum){
+        CoroutineScope(Dispatchers.IO).launch {
+//            binding.pbCompetitionDetail.isVisible = true
+            val response = try {
+                val updateForum = Forum (
+                    title = forum.title,
+                    content = forum.content,
+                    thumbnail = forum.thumbnail,
+                    upVote = forum.upVote,
+                    downVote = forum.downVote,
+                    id = null,
+                    comments = null,
+                    user = null
+                )
+                RetrofitInstances.api.updateForums(GlobalConstant.ATHENTICATION_TOKEN,gameID, forumID, updateForum)
+            } catch (e : IOException){
+                Log.d(TAG, "$e")
+                return@launch
+            } catch (e : HttpException){
+                Log.d(TAG, "Internal Error")
+                return@launch
+            }
+            if(response.isSuccessful && response.body() != null){
+
+            }else{
+                Log.d(TAG, "Response no successful")
+            }
+//            binding.pbCompetitionDetail.isVisible = false
+        }
     }
 }
