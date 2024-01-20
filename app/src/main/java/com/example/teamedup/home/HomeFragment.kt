@@ -87,6 +87,7 @@ class HomeFragment : Fragment(), GameRecyclerViewClickListener{
 
     private fun setupGameSearchRecyclerView(){
         binding.apply {
+            rvSearchedGame.visibility = View.GONE
             rvSearchedGame.apply {
                 setHasFixedSize(true)
                 gameSearchAdapter = GameSearchAdapter()
@@ -101,6 +102,7 @@ class HomeFragment : Fragment(), GameRecyclerViewClickListener{
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
                 override fun onTextChanged(searchedGame: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    rvSearchedGame.visibility = View.VISIBLE
                     filterList(searchedGame.toString())
                 }
 
@@ -113,6 +115,7 @@ class HomeFragment : Fragment(), GameRecyclerViewClickListener{
     override fun onResume() {
         super.onResume()
         sharedViewModel.setRestart(false)
+        binding.rvSearchedGame.visibility = View.GONE
     }
 
     private fun getData(){
