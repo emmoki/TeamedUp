@@ -97,6 +97,14 @@ interface GameApi {
         @Path("forum_id") forumID : String,
         @Body comment: Comment
     ): Response<Comment>
+    @PATCH("/games/{game_id}/forums/{forum_id}/comments/{comment_id}")
+    suspend fun updateComment(
+        @Header("Authorization") token : String,
+        @Path("game_id") gameID : String,
+        @Path("forum_id") forumID : String,
+        @Path("comment_id") commentID : String,
+        @Body comment: Comment
+    ): Response<Comment>
 
 
     // User

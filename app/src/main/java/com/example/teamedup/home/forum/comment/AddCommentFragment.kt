@@ -79,7 +79,7 @@ class AddCommentFragment : Fragment() {
                     addCommentFragmentArgs.gameID,
                     addCommentFragmentArgs.forumID,
                     Comment(
-                        "",
+                        null,
                         etCommentContent.text.toString(),
                         0,
                         0,
