@@ -6,13 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.example.teamedup.R
 import com.example.teamedup.databinding.FragmentProfileBinding
+import com.example.teamedup.repository.model.Team
 import com.example.teamedup.repository.model.User
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
 import com.example.teamedup.util.GlobalConstant
@@ -77,7 +76,14 @@ class ProfileFragment : Fragment() {
             }
             if(response.isSuccessful && response.body() != null){
                 user = response.body()!!.data
-                userTournamentHistoryAdapter.teams = response.body()!!.data.teamList
+                val joinedTournament = response.body()!!.data.teamList
+                for(team in joinedTournament){
+                    Log.d(TAG, "getData: $team")
+                    if(team.rank != null){
+                        userTournamentHistoryAdapter.teams += team
+                        Log.d(TAG, "getData: ${userTournamentHistoryAdapter.teams}")
+                    }
+                }
                 Log.d(TAG, "getData: $user")
                 setupOtherView()
             }else{

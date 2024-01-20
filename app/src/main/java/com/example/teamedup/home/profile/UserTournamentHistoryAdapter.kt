@@ -45,7 +45,9 @@ class UserTournamentHistoryAdapter : RecyclerView.Adapter<UserTournamentHistoryA
     ) {
         val team = teams[position]
         holder.binding.apply {
-            tvTournamentRanking.text = setUpRankingSuffix(team.rank!!)
+            if(team.rank != null){
+                tvTournamentRanking.text = setUpRankingSuffix(team.rank)
+            }
             tvTournamentTier.text = team.tournament.tier
             Picasso.with(context)
                 .load(team.tournament.icon)
