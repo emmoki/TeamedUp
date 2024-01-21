@@ -44,7 +44,7 @@ class ProfileFragment : Fragment() {
         binding.apply {
             llHostedTournament.setOnClickListener { findNavController().navigate(R.id.action_profileFragment_to_hostedTournamentFragment) }
             llJoinedTournament.setOnClickListener { findNavController().navigate(R.id.action_profileFragment_to_participatedTournamentFragment) }
-            llClamaiblePrize.setOnClickListener { findNavController().navigate(R.id.action_profileFragment_to_claimablePrizeFragment) }
+//            llClamaiblePrize.setOnClickListener { findNavController().navigate(R.id.action_profileFragment_to_claimablePrizeFragment) }
 
             btnMainJoinedTournament.setOnClickListener { findNavController().navigate(R.id.action_profileFragment_to_participatedTournamentFragment) }
             btnMainHostedTournament.setOnClickListener { findNavController().navigate(R.id.action_profileFragment_to_hostedTournamentFragment) }

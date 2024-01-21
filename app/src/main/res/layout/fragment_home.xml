@@ -19,14 +19,14 @@
 
         <LinearLayout
             android:id="@+id/ll_search_box"
-            android:layout_width="302dp"
+            android:layout_width="350dp"
             android:layout_height="45dp"
             android:background="@drawable/dark_gray_square_box"
             android:gravity="center"
             android:paddingHorizontal="5dp"
             app:circularflow_defaultRadius="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/ll_claiamble_prize"
+            app:layout_constraintEnd_toStartOf="@id/ll_profile"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0">
@@ -49,31 +49,13 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/ll_claiamble_prize"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            app:layout_constraintBaseline_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/ll_profile"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/ll_search_box"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_strongbox" />
-        </LinearLayout>
-
-        <LinearLayout
             android:id="@+id/ll_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ll_claiamble_prize"
+            app:layout_constraintStart_toEndOf="@+id/ll_search_box"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
@@ -186,7 +168,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_searched_game"
         android:layout_width="match_parent"

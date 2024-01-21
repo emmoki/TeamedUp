@@ -119,23 +119,6 @@
                     android:textColor="@color/white"
                     android:text="Hosted Tournament"/>
             </LinearLayout>
-            <LinearLayout
-                android:id="@+id/ll_clamaible_prize"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_strongbox_orange"
-                    android:layout_marginEnd="10dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_medium"
-                    android:textColor="@color/white"
-                    android:text="Notification"/>
-            </LinearLayout>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
