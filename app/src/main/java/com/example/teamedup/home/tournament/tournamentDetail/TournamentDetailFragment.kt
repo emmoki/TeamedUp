@@ -1,4 +1,4 @@
-package com.example.teamedup.home.competition.competitionDetail
+package com.example.teamedup.home.tournament.tournamentDetail
 
 import android.os.Bundle
 import android.util.Log
@@ -12,22 +12,17 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.teamedup.R
 import com.example.teamedup.databinding.FragmentTournamentDetailBinding
-import com.example.teamedup.databinding.MemberListIconItemBinding
-import com.example.teamedup.home.competition.createTeam.MemberIconAdapter
-import com.example.teamedup.repository.model.Tournament
+import com.example.teamedup.home.tournament.createTeam.MemberIconAdapter
 import com.example.teamedup.repository.model.User
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
 import com.example.teamedup.util.GlobalConstant
 import com.example.teamedup.util.TAG
 import com.example.teamedup.util.moneySuffix
-import com.google.firebase.platforminfo.GlobalLibraryVersionRegistrar
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
-import java.util.*
 import kotlin.collections.ArrayList
 
 class TournamentDetailFragment : Fragment() {
@@ -151,13 +146,14 @@ class TournamentDetailFragment : Fragment() {
             Log.d(TAG, "User Id: ${user.id}")
             binding.btnTournamentJoin.visibility = View.GONE
             binding.llCompleteCompetition.visibility = View.VISIBLE
-        }
-        if(viewmodel.tournament.userTeam == null){
-            binding.btnTournamentJoin.visibility = View.VISIBLE
         } else {
-            binding.btnTournamentJoin.visibility = View.GONE
-            binding.clMemberIcon.visibility = View.VISIBLE
-            setUpMemberIconRecyclerView(GlobalConstant.user)
+            if(viewmodel.tournament.userTeam == null){
+                binding.btnTournamentJoin.visibility = View.VISIBLE
+            } else {
+                binding.btnTournamentJoin.visibility = View.GONE
+                binding.clMemberIcon.visibility = View.VISIBLE
+                setUpMemberIconRecyclerView(GlobalConstant.user)
+            }
         }
     }
 

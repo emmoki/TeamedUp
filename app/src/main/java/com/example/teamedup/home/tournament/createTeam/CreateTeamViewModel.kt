@@ -1,4 +1,4 @@
-package com.example.teamedup.home.competition.createTeam
+package com.example.teamedup.home.tournament.createTeam
 
 import android.graphics.Bitmap
 import android.net.Uri

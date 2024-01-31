@@ -1,6 +1,5 @@
-package com.example.teamedup.home.competition.competitionDetail
+package com.example.teamedup.home.tournament.tournamentDetail
 
-import android.hardware.camera2.CameraExtensionSession.StillCaptureLatency
 import androidx.lifecycle.ViewModel
 import com.example.teamedup.repository.model.Tournament
 

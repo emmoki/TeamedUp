@@ -12,7 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.teamedup.databinding.FragmentParticipatedTournamentBinding
-import com.example.teamedup.home.competition.CompetitionAdapter
+import com.example.teamedup.home.tournament.TournamentAdapter
 import com.example.teamedup.repository.model.Team
 import com.example.teamedup.repository.model.Tournament
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
@@ -27,7 +27,7 @@ import java.io.IOException
 class ParticipatedTournamentFragment : Fragment(), TournamentRecyclerViewClickListener {
     private lateinit var _binding : FragmentParticipatedTournamentBinding
     private val binding get() = _binding
-    private lateinit var participatedTournamentAdapter: CompetitionAdapter
+    private lateinit var participatedTournamentAdapter: TournamentAdapter
     private lateinit var teamlist : List<Team>
     private val viewModel : ParticipatedTournamentViewModel by viewModels()
 
@@ -71,7 +71,7 @@ class ParticipatedTournamentFragment : Fragment(), TournamentRecyclerViewClickLi
 
     private fun setupHostedTournamentList(){
         binding.rvTournamentList.apply {
-            participatedTournamentAdapter = CompetitionAdapter()
+            participatedTournamentAdapter = TournamentAdapter()
             adapter = participatedTournamentAdapter
             layoutManager = LinearLayoutManager(
                 requireContext(),

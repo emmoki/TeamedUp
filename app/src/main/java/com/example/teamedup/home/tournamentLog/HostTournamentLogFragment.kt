@@ -1,4 +1,4 @@
-package com.example.teamedup.home.competitionLog
+package com.example.teamedup.home.tournamentLog
 
 import android.os.Bundle
 import android.util.Log
@@ -6,24 +6,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.teamedup.R
 import com.example.teamedup.databinding.FragmentHostTournamentLogBinding
-import com.example.teamedup.databinding.FragmentHostedTournamentBinding
 import com.example.teamedup.repository.model.format.UpdateRank
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
-import com.example.teamedup.util.ErrorUtils
 import com.example.teamedup.util.GlobalConstant
 import com.example.teamedup.util.TAG
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
-import java.util.*
 
 class HostTournamentLogFragment : Fragment() {
     private lateinit var _binding : FragmentHostTournamentLogBinding

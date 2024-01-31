@@ -1,4 +1,4 @@
-package com.example.teamedup.home.competition.createTeam
+package com.example.teamedup.home.tournament.createTeam
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.teamedup.databinding.UserListItemBinding
-import com.example.teamedup.repository.model.Game
 import com.example.teamedup.repository.model.User
 import com.example.teamedup.util.UserRecyclerViewClickListener
 import com.squareup.picasso.Picasso

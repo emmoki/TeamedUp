@@ -1,4 +1,4 @@
-package com.example.teamedup.home.competition.createTeam
+package com.example.teamedup.home.tournament.createTeam
 
 import android.os.Bundle
 import android.text.Editable
@@ -9,14 +9,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.teamedup.databinding.FragmentCreateTeamBinding
-import com.example.teamedup.home.competition.paymentConfirmation.PaymentConfirmationBottomSheet
-import com.example.teamedup.home.competition.successPayDialog.SuccessPayDialog
+import com.example.teamedup.home.tournament.paymentConfirmation.PaymentConfirmationBottomSheet
+import com.example.teamedup.home.tournament.successPayDialog.SuccessPayDialog
 import com.example.teamedup.repository.model.CreatedTeam
 import com.example.teamedup.repository.model.User
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances

@@ -12,13 +12,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.teamedup.databinding.FragmentHostedTournamentBinding
-import com.example.teamedup.home.HomeFragmentDirections
 import com.example.teamedup.home.SharedViewModel
-import com.example.teamedup.home.competition.CompetitionAdapter
+import com.example.teamedup.home.tournament.TournamentAdapter
 import com.example.teamedup.repository.model.Tournament
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
 import com.example.teamedup.util.GlobalConstant
-import com.example.teamedup.util.TAG
 import com.example.teamedup.util.TournamentRecyclerViewClickListener
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -28,7 +26,7 @@ import java.io.IOException
 class HostedTournamentFragment : Fragment(), TournamentRecyclerViewClickListener {
     private lateinit var _binding : FragmentHostedTournamentBinding
     private val binding get() = _binding
-    private lateinit var hostedTournamentAdapter : CompetitionAdapter
+    private lateinit var hostedTournamentAdapter : TournamentAdapter
     private val sharedViewModel : SharedViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -69,7 +67,7 @@ class HostedTournamentFragment : Fragment(), TournamentRecyclerViewClickListener
 
     private fun setupHostedTournamentList(){
         binding.rvHostedTournamentList.apply {
-            hostedTournamentAdapter = CompetitionAdapter()
+            hostedTournamentAdapter = TournamentAdapter()
             adapter = hostedTournamentAdapter
             layoutManager = LinearLayoutManager(
                 requireContext(),

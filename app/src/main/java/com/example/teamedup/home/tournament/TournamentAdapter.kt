@@ -1,4 +1,4 @@
-package com.example.teamedup.home.competition
+package com.example.teamedup.home.tournament
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,12 +8,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teamedup.databinding.CompetitionItemBinding
 import com.example.teamedup.repository.model.Tournament
-import com.example.teamedup.util.GameRecyclerViewClickListener
-import com.example.teamedup.util.GlobalConstant
 import com.example.teamedup.util.TournamentRecyclerViewClickListener
 import com.squareup.picasso.Picasso
 
-class CompetitionAdapter : RecyclerView.Adapter<CompetitionAdapter.CompetitionViewHolder>() {
+class TournamentAdapter : RecyclerView.Adapter<TournamentAdapter.CompetitionViewHolder>() {
     private lateinit var context : Context
     inner class CompetitionViewHolder(val binding : CompetitionItemBinding) : RecyclerView.ViewHolder(binding.root)
 

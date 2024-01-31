@@ -1,4 +1,4 @@
-package com.example.teamedup.home.competition.paymentConfirmation
+package com.example.teamedup.home.tournament.paymentConfirmation
 
 import android.app.Activity
 import android.content.Intent
@@ -10,23 +10,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.example.teamedup.databinding.BottomSheetDialogPaymentConfirmationBottomSheetBinding
-import com.example.teamedup.home.competition.createTeam.CreateTeamViewModel
-import com.example.teamedup.home.competition.successPayDialog.SuccessPayDialog
-import com.example.teamedup.repository.model.CreatedTeam
-import com.example.teamedup.repository.model.Team
-import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
-import com.example.teamedup.util.ErrorUtils
+import com.example.teamedup.home.tournament.createTeam.CreateTeamViewModel
 import com.example.teamedup.util.GlobalConstant
-import com.example.teamedup.util.PictureRelatedTools
 import com.example.teamedup.util.TAG
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import retrofit2.HttpException
-import java.io.IOException
 
 class PaymentConfirmationBottomSheet : BottomSheetDialogFragment() {
     lateinit var _binding : BottomSheetDialogPaymentConfirmationBottomSheetBinding

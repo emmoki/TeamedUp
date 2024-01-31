@@ -1,15 +1,12 @@
-package com.example.teamedup.home.competition.createTeam
+package com.example.teamedup.home.tournament.createTeam
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teamedup.databinding.MemberListNameItemBinding
 import com.example.teamedup.repository.model.User
-import com.example.teamedup.util.GlobalConstant
 import com.example.teamedup.util.UserDeleteRecyclerViewClickListener
-import com.example.teamedup.util.UserRecyclerViewClickListener
 
 class MemberNameAdapter : RecyclerView.Adapter<MemberNameAdapter.MemberNameViewHolder>() {
     private lateinit var context : Context

@@ -1,4 +1,4 @@
-package com.example.teamedup.home.competition
+package com.example.teamedup.home.tournament
 
 import android.content.ContentValues
 import android.os.Bundle
@@ -24,10 +24,10 @@ import retrofit2.HttpException
 import java.io.IOException
 
 
-class CompetitionDiscoverFragment : Fragment(), TournamentRecyclerViewClickListener{
+class TournamentDiscoverFragment : Fragment(), TournamentRecyclerViewClickListener{
     private lateinit var _binding : FragmentCompetionDiscoverBinding
     private val binding get() = _binding
-    private lateinit var competitionAdapter : CompetitionAdapter
+    private lateinit var tournamentAdapter : TournamentAdapter
     private val sharedViewModel : SharedViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -54,15 +54,15 @@ class CompetitionDiscoverFragment : Fragment(), TournamentRecyclerViewClickListe
 
     private fun setUpCompetitionRecyclerView(){
         binding.rvCompetitionList.apply {
-            competitionAdapter = CompetitionAdapter()
-            adapter = competitionAdapter
+            tournamentAdapter = TournamentAdapter()
+            adapter = tournamentAdapter
             layoutManager = LinearLayoutManager(
                 requireContext(),
                 LinearLayoutManager.VERTICAL,
                 false)
-            competitionAdapter.tournamentListener = this@CompetitionDiscoverFragment
+            tournamentAdapter.tournamentListener = this@TournamentDiscoverFragment
         }
-        Log.d(ContentValues.TAG, "setupRecyclerView: ${competitionAdapter.tournaments}")
+        Log.d(ContentValues.TAG, "setupRecyclerView: ${tournamentAdapter.tournaments}")
     }
 
     private fun getData(game : String){
@@ -78,7 +78,7 @@ class CompetitionDiscoverFragment : Fragment(), TournamentRecyclerViewClickListe
                 return@launch
             }
             if(response.isSuccessful && response.body() != null){
-                competitionAdapter.tournaments = response.body()!!.data
+                tournamentAdapter.tournaments = response.body()!!.data
             }else{
                 Log.d("CompetitionDiscover", "Response no successful")
             }

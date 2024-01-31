@@ -1,4 +1,4 @@
-package com.example.teamedup.home.competition.createCompetition
+package com.example.teamedup.home.tournament.createTournament
 
 import android.app.Activity
 import android.content.Intent
@@ -23,7 +23,6 @@ import com.example.teamedup.home.forum.createForum.SuccessCreateDialog
 import com.example.teamedup.repository.model.Tournament
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
 import com.example.teamedup.util.GlobalConstant
-import com.example.teamedup.util.PictureRelatedTools
 import com.example.teamedup.util.PictureRelatedTools.uploadImage1
 import com.example.teamedup.util.PictureRelatedTools.uploadImage2
 import com.example.teamedup.util.PictureRelatedTools.uploadedImage1
@@ -35,7 +34,7 @@ import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
 
-class CreateCompetitionFragment : Fragment() {
+class CreateTournamentFragment : Fragment() {
     private lateinit var _binding : FragmentCreateCompetitionBinding
     private val binding get() = _binding
     private val tierItem = listOf("Pro", "Amateur")

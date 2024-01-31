@@ -36,7 +36,7 @@
     </fragment>
     <fragment
         android:id="@+id/tournamentDetailFragment"
-        android:name="com.example.teamedup.home.competition.competitionDetail.TournamentDetailFragment"
+        android:name="com.example.teamedup.home.tournament.tournamentDetail.TournamentDetailFragment"
         android:label="fragment_tournament_detail"
         tools:layout="@layout/fragment_tournament_detail" >
         <argument
@@ -54,7 +54,7 @@
     </fragment>
     <fragment
         android:id="@+id/createTeamFragment"
-        android:name="com.example.teamedup.home.competition.createTeam.CreateTeamFragment"
+        android:name="com.example.teamedup.home.tournament.createTeam.CreateTeamFragment"
         android:label="fragment_create_team"
         tools:layout="@layout/fragment_create_team" >
         <action
@@ -145,7 +145,7 @@
         tools:layout="@layout/fragment_create_forum" />
     <fragment
         android:id="@+id/createCompetitionFragment"
-        android:name="com.example.teamedup.home.competition.createCompetition.CreateCompetitionFragment"
+        android:name="com.example.teamedup.home.tournament.createTournament.CreateTournamentFragment"
         android:label="fragment_create_competition"
         tools:layout="@layout/fragment_create_competition" >
         <action
@@ -192,7 +192,7 @@
     </fragment>
     <fragment
         android:id="@+id/hostTournamentLogFragment"
-        android:name="com.example.teamedup.home.competitionLog.HostTournamentLogFragment"
+        android:name="com.example.teamedup.home.tournamentLog.HostTournamentLogFragment"
         android:label="fragment_host_tournament_log"
         tools:layout="@layout/fragment_host_tournament_log" >
         <argument

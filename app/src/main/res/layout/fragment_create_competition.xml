@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".home.competition.createCompetition.CreateCompetitionFragment"
+    tools:context=".home.tournament.createTournament.CreateTournamentFragment"
     android:background="@color/darker_gray"
     android:orientation="vertical">
 

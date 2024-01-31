@@ -1,18 +1,12 @@
-package com.example.teamedup.home.competition.createTeam
+package com.example.teamedup.home.tournament.createTeam
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
-import com.example.teamedup.databinding.CompetitionItemBinding
 import com.example.teamedup.databinding.MemberListIconItemBinding
 import com.example.teamedup.repository.model.User
-import com.example.teamedup.util.GlobalConstant
 import com.squareup.picasso.Picasso
-import kotlin.coroutines.coroutineContext
 
 class MemberIconAdapter : RecyclerView.Adapter<MemberIconAdapter.MemberIconViewHolder>() {
     private lateinit var context : Context

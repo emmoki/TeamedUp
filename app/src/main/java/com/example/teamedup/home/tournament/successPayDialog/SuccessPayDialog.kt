@@ -1,4 +1,4 @@
-package com.example.teamedup.home.competition.successPayDialog
+package com.example.teamedup.home.tournament.successPayDialog
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -9,9 +9,7 @@ import android.view.ViewGroup
 import android.view.Window
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.example.teamedup.databinding.DialogFragmentSuccessPayBinding
-import com.example.teamedup.home.competition.createTeam.CreateTeamFragmentDirections
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
