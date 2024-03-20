@@ -52,6 +52,9 @@ class LoginFragment : Fragment() {
         with(binding){
             toolbar.btnCreate.visibility = View.GONE
             toolbar.tvToolbarTitle.text = "Back"
+            toolbar.back.setOnClickListener {
+                findNavController().popBackStack()
+            }
             tvSignUp.setOnClickListener {
                 findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
             }
