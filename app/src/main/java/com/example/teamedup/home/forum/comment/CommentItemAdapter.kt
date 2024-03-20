@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.teamedup.R
 import com.example.teamedup.databinding.CommentListItemBinding
 import com.example.teamedup.repository.model.Comment
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
@@ -52,10 +53,16 @@ class CommentItemAdapter : RecyclerView.Adapter<CommentItemAdapter.CommentViewHo
 
     override fun onBindViewHolder(holder: CommentViewHolder, position: Int) {
         val comment = comments[position]
+
         holder.binding.apply {
-            Picasso.with(context)
-                .load(comment.user?.picture)
-                .into(ivAuthorIcon)
+            when(comment.user?.picture.isNullOrEmpty()){
+                true -> {ivAuthorIcon.setImageResource(R.drawable.ic_x)}
+                false -> {
+                    Picasso.with(context)
+                        .load(comment.user?.picture)
+                        .into(ivAuthorIcon)
+                }
+            }
             tvAuthorName.text = comment.user?.name
 
             tvCommentContent.text = comment.comment
