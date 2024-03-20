@@ -58,6 +58,7 @@ class CreateTournamentFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupBackToolbar()
         setupTierDropdownList()
         setupTypeDropdownList()
         setupPersonEachTeamDropdownList()
@@ -274,6 +275,14 @@ class CreateTournamentFragment : Fragment() {
                         viewModel.thumbnailUploadedImage = imageUri
                     }
                 }
+            }
+        }
+    }
+
+    private fun setupBackToolbar(){
+        with(binding){
+            toolbar.back.setOnClickListener {
+                findNavController().popBackStack()
             }
         }
     }
