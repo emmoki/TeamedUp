@@ -145,7 +145,7 @@ class HomeFragment : Fragment(), GameRecyclerViewClickListener{
 
 
     private fun setUpAddButton(){
-        binding.btnAdding.setOnClickListener {
+        binding.clAdd.setOnClickListener {
             sharedViewModel.tab.observe(viewLifecycleOwner){tab ->
                 when(tab){
                     "Forum" -> findNavController().navigate(R.id.action_homeFragment_to_createForumFragment)
