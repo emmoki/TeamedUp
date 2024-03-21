@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "311980686823",
+    "project_id": "teamedup-ee4dc",
+    "storage_bucket": "teamedup-ee4dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:311980686823:android:5f6d74cc8d26201a3b5142",
+        "android_client_info": {
+          "package_name": "com.example.teamedup"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgDx5ySLJ1UboxghR2__XD4HW-S4EIIyA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

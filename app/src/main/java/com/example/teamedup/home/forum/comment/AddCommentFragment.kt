@@ -17,6 +17,7 @@ import com.example.teamedup.home.forum.createForum.SuccessCreateDialog
 import com.example.teamedup.repository.model.Comment
 import com.example.teamedup.repository.model.Forum
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
+import com.example.teamedup.util.DialogExtension
 import com.example.teamedup.util.GlobalConstant
 import com.example.teamedup.util.TAG
 import kotlinx.coroutines.launch
@@ -62,7 +63,7 @@ class AddCommentFragment : Fragment() {
                 return@launch
             }
             if(response.isSuccessful && response.body() != null){
-                SuccessCreateDialog().show(parentFragmentManager, "SuccessCreateDialog")
+                DialogExtension().successCreateComment(requireActivity().supportFragmentManager)
                 findNavController().popBackStack()
                 sharedViewModel.setRestart(true)
 //                Log.d(TAG, "getData: ${viewmodel.user}")

@@ -20,10 +20,7 @@ import com.example.teamedup.databinding.FragmentCreateForumBinding
 import com.example.teamedup.home.SharedViewModel
 import com.example.teamedup.repository.model.Forum
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
-import com.example.teamedup.util.GlobalConstant
-import com.example.teamedup.util.PictureRelatedTools
-import com.example.teamedup.util.TAG
-import com.example.teamedup.util.ViewUtils
+import com.example.teamedup.util.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -135,7 +132,7 @@ class CreateForumFragment : Fragment() {
                 return@launch
             }
             if(response.isSuccessful && response.body() != null){
-                SuccessCreateDialog().show(parentFragmentManager, "SuccessCreateDialog")
+                DialogExtension().successCreateForum(requireActivity().supportFragmentManager)
                 findNavController().popBackStack()
                 sharedViewModel.setRestart(true)
 //                Log.d(TAG, "getData: ${viewmodel.user}")

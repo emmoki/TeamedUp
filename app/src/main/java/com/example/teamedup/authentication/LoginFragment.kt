@@ -13,16 +13,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.teamedup.R
 import com.example.teamedup.databinding.FragmentLoginBinding
-import com.example.teamedup.home.forum.ForumAdapter
-import com.example.teamedup.repository.model.ApiError
 import com.example.teamedup.repository.model.format.LoginFormat
 import com.example.teamedup.repository.remoteData.retrofitSetup.RetrofitInstances
-import com.example.teamedup.util.ErrorAdapter
-import com.example.teamedup.util.ErrorUtils
-import com.example.teamedup.util.GlobalConstant
-import com.example.teamedup.util.TAG
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import com.example.teamedup.util.*
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException

@@ -124,6 +124,7 @@ class ForumDetailFragment : Fragment() {
                     .load(viewModel.forum.thumbnail)
                     .into(ivForumImage)
             }
+            tvForumTitle.text = viewModel.forum.title
             tvForumUpVote.text = viewModel.forum.upVote.toString()
             tvForumDownVote.text = viewModel.forum.downVote.toString()
             tvForumContent.text = viewModel.forum.content
